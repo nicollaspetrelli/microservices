@@ -1,0 +1,85 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: workshop-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: acl-route
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - workshop-gateway
+  http:
+    - name: "acl-moderator-chaos-delay"
+      match:
+        - uri:
+            exact: "/acl/role/moderator/resources"
+      fault:
+        delay:
+          percentage:
+            value: 100.0
+          fixedDelay: 7s
+      route:
+        - destination:
+            host: acl-service
+            port:
+              number: 80
+    - match:
+        - uri:
+            prefix: /acl
+      route:
+        - destination:
+            host: acl-service
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: grades-route
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - workshop-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /grades
+      route:
+        - destination:
+            host: grades-service
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: secrets-route
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - workshop-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /secrets
+      route:
+        - destination:
+            host: secrets-service
+            port:
+              number: 80

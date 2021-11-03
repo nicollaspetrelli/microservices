@@ -1,0 +1,2 @@
+#!/bin/sh
+tcpdump -i any -n port 50051 -q -t -X

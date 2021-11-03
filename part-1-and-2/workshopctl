@@ -1,0 +1,246 @@
+#!/bin/bash
+set -e
+
+cd "$(dirname "$0")"
+
+#
+# Simple usage function
+#
+usage() {
+  echo -e "\e[33mUsage:\e[0m" 1>&2
+  echo -e "  $0 \e[36m<command>" 1>&2
+  echo "" 1>&2
+  echo -e "\e[33mCommands:\e[0m" 1>&2
+  echo -e "  \e[32mstart                      \e[0mStarts the minikube cluster" 1>&2
+  echo -e "  \e[32mcircuit-breaker \e[36m[delete]   \e[0mApplies or deletes the Circuit Breaker rules" 1>&2
+  echo -e "  \e[32mdocker-env                 \e[0mPrints the docker env command from minikube" 1>&2
+  echo -e "  \e[32mgenerate-data              \e[0mAccess every service to generate data for visualization" 1>&2
+  echo -e "  \e[32mingress                    \e[0mDisplays the commands necessary for gateway configuration" 1>&2
+  echo -e "  \e[32mpods                       \e[0mProxy to run \e[36mminikube kubectl -- get pods" 1>&2
+  echo -e "  \e[32mrebuild \e[36m<name>             \e[0mRebuilds a single docker image" 1>&2
+  echo -e "  \e[32mrebuild-all                \e[0mRebuilds every docker image" 1>&2
+  echo -e "  \e[32mservices                   \e[0mProxy to run \e[36mminikube kubectl -- get services" 1>&2
+  echo -e "  \e[32mtunnel                     \e[0mProxy to run \e[36mminikube tunnel --cleanup" 1>&2
+  echo -e "  \e[32mhelp                       \e[0mDisplays this help menu" 1>&2
+}
+
+#
+# Builds all docker images
+#
+docker_build_all() {
+  docker_build "libs"
+  echo ""
+  docker_build "acl"
+  echo ""
+  docker_build "grades-db"
+  echo ""
+  docker_build "grades"
+  echo ""
+  docker_build "secrets-db"
+  echo ""
+  docker_build "secrets"
+}
+
+#
+# Builds a single docker image
+#
+docker_do_build() {
+  if [[ -z $3 ]]; then
+    usage
+    exit 1
+  fi
+
+  eval $(minikube -p minikube docker-env)
+  logFile="logs/$1.build.log"
+  echo -e "\e[46m  \e[0m Building image \e[32m$2:latest \e[0mfrom directory \e[33m$3\e[0m"
+  echo -e "   \e[90mYou can check the output at ${logFile}\e[0m"
+  docker build $3 -t $2:latest >$logFile &
+  pid=$!
+  set +e
+  echo -n "   "
+  while ps -p $pid &>/dev/null; do
+    echo -n "."
+    sleep 1
+  done
+  wait $pid
+  STATUS=$?
+  set -e
+  if [[ $STATUS -ne 0 ]]; then
+    echo -e "\e[1K\r   \e[31mAn error occurred. Please check the logs.\e[0m"
+    exit 1
+  fi
+  echo -e "\e[1K\r   \e[32mFinished\e[0m"
+}
+
+#
+# Rebuilds a single docker image
+#
+docker_build() {
+  if [[ -z $1 ]]; then
+    usage
+    exit 1
+  fi
+
+  case "$1" in
+  "libs")
+    docker_do_build "$1" "ms/$1" "$1/"
+    ;;
+
+  "acl" | "grades" | "secrets")
+    docker_do_build "$1" "ms/$1" "microservices/$1/"
+    ;;
+
+  "grades-db")
+    docker_do_build "$1" "ms/$1" "microservices/grades/utils/db"
+    ;;
+
+  "secrets-db")
+    docker_do_build "$1" "ms/$1" "microservices/secrets/utils/db"
+    ;;
+
+  *)
+    echo -e "Invalid argument: \e[31m$1\e[0m"
+    echo -e "Valid values are: \e[33mlibs \e[90m(internal)\e[33m, acl, grades, secrets\e[0m"
+    exit 1
+    break
+    ;;
+  esac
+}
+
+#
+# Starts the cluster
+#
+minikube_start() {
+  minikube status >/dev/null && true
+  if [ $? -ne 0 ]; then
+    echo -e "\e[46m \e[0m Starting minikube cluster\n"
+    minikube start
+  fi
+}
+
+#
+# Starts the cluster, builds images, etc
+#
+minikube_start_everything() {
+  minikube_start
+  minikube kubectl -- get deployment acl-deployment >/dev/null 2>&1 && true
+  if [ $? -ne 0 ]; then
+    echo -e "\n\e[46m \e[0m Building every docker image\n"
+    docker_build_all
+    echo -e "\n\e[46m \e[0m Creating resources\n"
+    minikube kubectl -- create -f k8s/acl.yml
+    minikube kubectl -- create -f k8s/grades.yml
+    minikube kubectl -- create -f k8s/secrets.yml
+    minikube kubectl -- create -f k8s/gateway.yml
+  else
+    echo -e "\e[42m \e[0m Minikube cluster is already running\n"
+    echo -e "\e[44m \e[0m To rebuild docker images, run:"
+    echo -e "  \e[33m$0 rebuild <name> \e[0mor \e[33m$0 rebuild-all"
+  fi
+
+  echo -e "\n\e[46m \e[0m You should now run the following command in another terminal:"
+  echo -e "  \e[33m$0 tunnel"
+
+  echo -e "\n\e[46m \e[0m And then run this one to get the external IPs:"
+  echo -e "  \e[33m$0 services"
+}
+
+#
+# Requests a service 100 times
+#
+generate_data() {
+  echo -e "\e[46m \e[0m Fetching \e[33mhttp://${GATEWAY_URL}/${1}\e[0m 100 times..."
+  echo -n "  "
+  for i in $(seq 1 100); do
+    echo -n "."
+    curl -s -o /dev/null --user admin:123456 "http://${GATEWAY_URL}/${1}";
+  done
+  echo ""
+}
+
+# Processing args
+case "$1" in
+start)
+  minikube_start_everything
+  ;;
+
+rebuild-all)
+  docker_build_all
+  ;;
+
+rebuild)
+  if [[ -z $2 ]]; then
+    usage
+    exit 1
+  fi
+
+  docker_build "$2"
+  ;;
+
+pods)
+  minikube_start
+  echo -e "\e[46m \e[0m Running \e[33mminikube kubectl -- get pods\e[0m\n"
+  minikube kubectl -- get pods
+  ;;
+
+services)
+  minikube_start
+  echo -e "\e[46m \e[0m Running \e[33mminikube kubectl -- get services\e[0m\n"
+  minikube kubectl -- get services
+  ;;
+
+tunnel)
+  minikube_start
+  echo -e "\e[46m \e[0m Running \e[33mminikube tunnel --cleanup\e[0m\n"
+  minikube tunnel --cleanup
+  ;;
+
+generate-data)
+  generate_data "secrets"
+  echo ""
+  generate_data "grades"
+  echo ""
+  echo -e "\e[42m \e[0m Done"
+  ;;
+
+ingress)
+  echo -e "\e[90mExecute the following command:\e[97m"
+  INGRESS_HOST=$(minikube ip)
+  INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].nodePort}')
+  GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
+  echo "export INGRESS_PORT=$INGRESS_PORT"
+  echo "export GATEWAY_URL=$GATEWAY_URL"
+  echo -e "\n\e[90mAdd this entry to /etc/hosts:\e[97m"
+  echo "$INGRESS_HOST acl-service.default.svc.cluster.local grades-service.default.svc.cluster.local secrets-service.default.svc.cluster.local"
+  echo -ne "\e[0m"
+  ;;
+
+docker-env)
+  echo -e "\e[90mCopy and run:"
+  echo -e "\e[97meval \$(minikube -p minikube docker-env)\e[0m"
+  ;;
+
+circuit-breaker)
+  if [[ "$2" == "delete" ]]; then
+    minikube kubectl -- delete -f ./k8s/chaos/circuit-breaker.yml
+  else
+    minikube kubectl -- apply -f ./k8s/chaos/circuit-breaker.yml
+  fi
+  ;;
+
+help)
+  usage
+  ;;
+
+--)
+  break
+  ;;
+
+*)
+  if [ -n "$1" ]; then
+    echo -e "Invalid command: \e[31m$1\e[0m\n"
+  fi
+  usage
+  exit 1
+  ;;
+esac

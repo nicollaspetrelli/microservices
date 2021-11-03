@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Parte 1 - Workshop de Microsserviços</title>
+
+        <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+        <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="../reveal.js/dist/theme/white.css">
+        <link rel="stylesheet" href="../reveal.js/plugin/highlight/monokai.css">
+        <link rel="stylesheet" href="../css/app.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Microsserviços</h1>
+                    <h2>Parte 1</h2>
+                </section>
+                <section>
+                    <section>
+                        <blockquote class="smaller">
+                            É um padrão de projeto de software, ou padrão de arquitetura de software de baixo
+                            acoplamento,
+                            onde as funcionalidades implementadas nas aplicações devem ser disponibilizadas na forma de
+                            serviços, acessíveis normalmente via web services, é baseada nos princípios da computação
+                            distribuída, que utiliza o paradigma request/reply para estabelecer a comunicação entre os
+                            sistemas clientes e os sistemas dos serviços.
+                        </blockquote>
+                    </section>
+                    <section>
+                        <img class="r-stretch"
+                             src="https://static.packt-cdn.com/products/9781789133608/graphics/7c224612-f133-4d32-aeb6-e771db013b98.png">
+                    </section>
+                    <section>
+                        <h2>Service Oriented Architeture (SOA)</h2>
+                        <a href="https://pt.wikipedia.org/wiki/Service-oriented_architecture"
+                           class="small">Wikipedia</a>
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Microsserviços</h2>
+                        <blockquote class="smaller">
+                            A variant of the SOA structural style – arranges an application as a collection of
+                            loosely-coupled services. In a microservices architecture, services are fine-grained and the
+                            protocols are lightweight.
+                        </blockquote>
+                        <a href="https://en.wikipedia.org/wiki/Microservices" class="small">Wikipedia</a>
+                    </section>
+                    <section>
+                        <img src="https://www.embarcados.com.br/wp-content/uploads/2021/03/68747470733a2f2f7777772e78656e6f6e737461636b2e636f6d2f696d616765732f696e7369676874732f78656e6f6e737461636b2d776861742d6172652d6d6963726f73657276696365732e706e671.png">
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Teorema CAP</h2>
+                        <p>
+                            Também chamado de <strong>Teorema de Brewer</strong>, afirma que é impossível que o
+                            armazenamento de dados distribuído forneça simultaneamente mais de duas das três garantias
+                            seguintes:
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Teorema CAP</h2>
+                        <ul>
+                            <li>Consistência: Cada leitura recebe a escrita mais recente ou um erro</li>
+                        </ul>
+                        <p><a href="https://pt.wikipedia.org/wiki/Teorema_CAP" class="small">Wikipedia</a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Teorema CAP</h2>
+                        <ul>
+                            <li>Disponibilidade (Availability): Cada pedido recebe uma resposta (sem erro) - sem
+                                garantia de que contém a escrita mais recente
+                            </li>
+                        </ul>
+                        <p><a href="https://pt.wikipedia.org/wiki/Teorema_CAP" class="small">Wikipedia</a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Teorema CAP</h2>
+                        <ul>
+                            <li>Partição tolerante a falhas: O sistema continua a funcionar apesar de um número
+                                arbitrário de mensagens serem descartadas (ou atrasadas) pela rede entre nós
+                            </li>
+                        </ul>
+                        <p><a href="https://pt.wikipedia.org/wiki/Teorema_CAP" class="small">Wikipedia</a>
+                    </section>
+
+                    <section>
+                        <img src="https://hazelcast.com/wp-content/uploads/2020/06/cap-theorem-diagram-800x753.png">
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Microsserviços x monolítico</h2>
+                        <img src="https://miro.medium.com/max/880/0*dBmkQNanJj5laQc5.jpg">
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h2>Comunicação entre serviços</h2>
+                        <div class="d-flex">
+                            <div class="px-1 fragment" data-fragment-index="0">
+                                HTTP<br>
+                                <span class="small fragment" data-fragment-index="3">Síncrono</span><br>
+                                <span class="small fragment" data-fragment-index="6">REST, GraphQL</span>
+                            </div>
+                            <div class="px-1 fragment" data-fragment-index="1">
+                                IPC<br>
+                                <span class="small fragment" data-fragment-index="4">Síncrono</span><br>
+                                <span class="small fragment" data-fragment-index="7">gRPC</span>
+                            </div>
+                            <div class="px-1 fragment" data-fragment-index="2">
+                                Mensageria<br>
+                                <span class="small fragment" data-fragment-index="5">Assíncrono</span><br>
+                                <span class="small fragment" data-fragment-index="8">RabbitMQ, Kafka</span>
+                            </div>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h3>RabbitMQ</h3>
+                        <blockquote class="small">
+                            An open-source message-broker software (sometimes called message-oriented middleware) that
+                            originally implemented the Advanced Message Queuing Protocol (AMQP) and has since been
+                            extended with a plug-in architecture to support Streaming Text Oriented Messaging Protocol
+                            (STOMP), MQ Telemetry Transport (MQTT), and other protocols
+                        </blockquote>
+                    </section>
+                    <section data-auto-animate>
+                        <h3>RabbitMQ</h3>
+                        <img src="https://docs.microsoft.com/pt-br/dotnet/architecture/microservices/multi-container-microservice-net-applications/media/rabbitmq-event-bus-development-test-environment/rabbitmq-implementation.png">
+                    </section>
+                </section>
+                <section>
+                    <section>
+                        <h3>Service Discovery</h3>
+                        <blockquote class="small">
+                            It is the automatic detection of devices and services offered by these devices on a computer
+                            network.
+                        </blockquote>
+                        <a href="https://en.wikipedia.org/wiki/Service_discovery" class="small">Wikipedia</a>
+                    </section>
+                    <section>
+                        <h4>Client side</h4>
+                        <blockquote class="small">
+                            The client is responsible for determining the network locations of available service
+                            instances
+                            and load balancing requests across them. The client queries a service registry, which is a
+                            database of available service instances. The client then uses a load‑balancing algorithm to
+                            select one of the available service instances and makes a request.
+                        </blockquote>
+                        <a href="https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/"
+                           class="small">nginx.com/blog</a>
+                    </section>
+                    <section>
+                        <img class="r-stretch"
+                             src="https://www.nginx.com/wp-content/uploads/2016/04/Richardson-microservices-part4-2_client-side-pattern.png">
+                    </section>
+                    <section>
+                        <h4>Server‑Side</h4>
+                        <blockquote class="small">
+                            The client makes a request to a service via a load balancer. The load balancer queries the
+                            service registry and routes each request to an available service instance. As with
+                            client‑side
+                            discovery, service instances are registered and deregistered with the service registry.
+                        </blockquote>
+                        <a href="https://www.nginx.com/blog/service-discovery-in-a-microservices-architecture/"
+                           class="small">nginx.com/blog</a>
+                    </section>
+                    <section>
+                        <img class="r-stretch"
+                             src="https://www.nginx.com/wp-content/uploads/2016/04/Richardson-microservices-part4-3_server-side-pattern.png">
+                    </section>
+                    <section>
+                        <div class="d-flex half-columns">
+                            <div>
+                                <p class="small">Client-Side Discovery</p>
+                                <img src="https://www.nginx.com/wp-content/uploads/2016/04/Richardson-microservices-part4-2_client-side-pattern.png"
+                                     style="height: 300px">
+                                <p class="smallest">
+                                    Exemplos:<br>
+                                    <a href="https://github.com/Netflix/eureka/">netflix/eureka</a> e<br>
+                                    <a href="https://github.com/Netflix/ribbon">netflix/ribbon</a>
+                                </p>
+                                <p>
+                                    <a href="https://microservices.io/patterns/client-side-discovery.html" class="smallest">Saiba mais &raquo;</a>
+                                </p>
+                            </div>
+                            <div>
+                                <p class="small">Server-Side Discovery</p>
+                                <img src="https://www.nginx.com/wp-content/uploads/2016/04/Richardson-microservices-part4-3_server-side-pattern.png"
+                                     style="height: 300px">
+                                <p class="smallest">
+                                    Exemplos:<br>
+                                    <a href="https://aws.amazon.com/elasticloadbalancing/">AWS Elastic Load Balancer</a> e<br>
+                                    <a href="https://docs.docker.com/engine/swarm/ingress/"> Swarm Ingress Routing Mesh</a>
+                                </p>
+                                <p>
+                                    <a href="https://microservices.io/patterns/server-side-discovery.html" class="smallest">Saiba mais &raquo;</a>
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>Demonstração</h1>
+                        <a href="https://github.com/workshop-picolotec/microservices">github.com/workshop-picolotec/microservices</a>
+                    </section>
+                    <section>
+                        <img src="../img/diagram.png" class="r-stretch">
+                    </section>
+                </section>
+
+                <section>
+                    <h1>Referências</h1>
+                    <ul>
+                        <li>
+                            <a href="https://microservices.io/">microservices.io</a>
+                        </li>
+                        <li>
+                            <a href="https://aws.amazon.com/microservices/">aws.amazon.com</a>
+                        </li>
+                        <li>
+                            <a href="https://azure.microsoft.com/en-us/solutions/microservice-applications/#solution-architectures">azure.microsoft.com</a>
+                        </li>
+                        <li>
+                            <a href="https://cloud.google.com/learn/what-is-microservices-architecture">cloud.google.com</a>
+                        </li>
+                        <li>
+                            <a href="https://www.ibm.com/cloud/learn/microservices">ibm.com</a>
+                        </li>
+                        <li>
+                            <a href="https://www.nginx.com/learn/microservices-architecture/">nginx.com/learn/microservices-architecture</a>
+                        </li>
+                        <li>
+                            <a href="https://www.nginx.com/blog/building-microservices-inter-process-communication/">nginx.com/blog/building-microservices-inter-process-communication</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+
+        <script src="../reveal.js/dist/reveal.js"></script>
+        <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+        <script>
+            Reveal.initialize({
+                hash: true,
+                mouseWheel: true,
+                plugins: [RevealHighlight]
+            });
+        </script>
+    </body>
+</html>
+

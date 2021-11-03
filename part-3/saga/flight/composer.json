@@ -1,0 +1,58 @@
+{
+    "name": "vcampitelli/saga-flight",
+    "description": "Simple Flight Reservations App to demonstrate Sagas",
+    "keywords": [
+        "microservice",
+        "saga"
+    ],
+    "homepage": "https://github.com/vcampitelli/workshop-microservice",
+    "license": "private",
+    "authors": [
+        {
+            "name": "Vinícius Campitelli",
+            "email": "1877191+vcampitelli@users.noreply.github.com",
+            "homepage": "https://viniciuscampitelli.com/"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "vcampitelli/saga-core": "dev-master",
+        "vcampitelli/flight-domain": "dev-master",
+        "vcampitelli/hotel-domain": "dev-master",
+        "vcampitelli/reservation-domain": "dev-master"
+    },
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Flight\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": [
+            "composer update",
+            "php bin/event-handler.php"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/srv/framework/saga-core"
+        },
+        {
+            "type": "path",
+            "url": "/srv/framework/flight-domain"
+        },
+        {
+            "type": "path",
+            "url": "/srv/framework/hotel-domain"
+        },
+        {
+            "type": "path",
+            "url": "/srv/framework/reservation-domain"
+        }
+    ]
+}

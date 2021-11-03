@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;0,600;1,300&display=swap');
+
+:root {
+  --r-main-font: 'Merriweather Sans', sans-serif;
+  --r-heading-font: 'Merriweather Sans', sans-serif;
+  --r-heading-font-weight: 700;
+  --r-heading-text-transform: normal;
+  --r-main-font-size: 36px;
+}
+.reveal .slides {
+  text-align: left;
+  font-weight: 300;
+}
+.reveal pre {
+  margin-left: 0;
+}
+.reveal blockquote {
+  margin-left: 0;
+  padding: 10px 15px;
+  background: #fdfdfd;
+  color: #666;
+}
+.reveal blockquote > cite {
+  color: #aaa;
+}
+
+.h1 {
+  font-family: var(--r-heading-font);
+  font-weight: var(--r-heading-font-weight);
+  font-size: var(--r-heading1-size);
+}
+h2.subtitle,
+h3.subtitle,
+h4.subtitle,
+h5.subtitle,
+h6.subtitle {
+  color: #777;
+  margin-bottom: 0;
+}
+h3.subtitle {
+  font-size: calc(0.8 * var(--r-heading3-size));
+}
+h4.subtitle {
+  font-size: calc(0.8 * var(--r-heading4-size));
+}
+h5.subtitle {
+  font-size: calc(0.75 * var(--r-heading4-size));
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  font-variant: small-caps;
+}
+
+.fw-300 {
+  font-weight: 300;
+}
+.fw-400 {
+  font-weight: 400;
+}
+
+pre > code:not(.hljs) {
+  color: #f8f8f2;
+  background: #4b4b4b;
+  padding-left: 22px;
+}
+pre > code:not(.hljs) > kbd {
+  font-style: italic;
+  color: burlywood;
+}
+pre > code:not(.hljs)::before {
+  margin-left: -1em;
+  margin-right: 0.4em;
+  content: "$";
+  color: #f5ab35;
+}
+.red {
+  color: #c83200;
+}
+
+pre.shell-output {
+  width: 90%;
+  padding: 0.5em;
+  font-size: 0.45em;
+  color: #666;
+  background-color: #fbfbfb;
+  box-shadow: none;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+}
+pre + pre.shell-output {
+  margin-top: calc(var(--r-block-margin) * -1);
+}
+pre.shell-output + p {
+  margin-top: calc(var(--r-block-margin) * 1.5);
+}
+code {
+  background-color: #fafafa;
+  color: #c83200;
+  font-size: 0.9em;
+  padding: 3px 5px;
+}
+.fg-cyan {
+  color: darkcyan;
+}
+.bg-cyan {
+  background-color: darkcyan;
+}
+.fg-yellow {
+  color: goldenrod;
+}
+.fg-green {
+  color: forestgreen;
+}
+.bg-green {
+  background-color: limegreen;
+}
+.fg-gray,
+.text-muted {
+  color: #bbb;
+}

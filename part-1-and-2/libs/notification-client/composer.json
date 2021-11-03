@@ -1,0 +1,23 @@
+{
+    "name": "vcampitelli/microservice-notification-client",
+    "description": "Notification library for the Workshop Microservices",
+    "type": "library",
+    "license": "private",
+    "autoload": {
+        "psr-4": {
+            "Vcampitelli\\Framework\\Notification\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vinícius Campitelli",
+            "email": "1877191+vcampitelli@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "php-amqplib/php-amqplib": "^3.0"
+    }
+}

@@ -1,0 +1,53 @@
+<svg version="1.1" baseProfile="full" width="797.5" height="442" viewbox="0 0 797.5 442" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events" style="font:bold  12pt Helvetica, Helvetica, sans-serif;;stroke-linejoin:round;stroke-linecap:round">
+  <desc >[reservation] -&gt; publica [&lt;reference&gt; PendingReservationCreatedEvent]
+[&lt;reference&gt; PendingReservationCreatedEvent] --:&gt; [flight]
+[flight] publica -&gt; [&lt;reference&gt; FlightBookedEvent]
+[flight] -&gt; [&lt;reference&gt; DeniedFlightBookingEvent]
+[&lt;reference&gt; DeniedFlightBookingEvent] --:&gt; consome [reservation]
+[&lt;reference&gt; DeniedFlightBookingEvent] --:&gt; [hotel]
+[hotel] publica -&gt; [&lt;reference&gt; DeniedHotelBookingEvent]
+[hotel] -&gt; [&lt;reference&gt; HotelBookedEvent]
+[&lt;reference&gt; DeniedHotelBookingEvent] --:&gt; [flight]
+[&lt;reference&gt; HotelBookedEvent] --:&gt; [reservation]</desc>
+  <rect x="0" y="0" height="442" width="797.5" style="stroke:none; fill:transparent;"></rect>
+  <text x="100.9" y="91.5" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;">publica</text>
+  <path d="M412.3 50.1 L165 79.5 L165 92.8 L165 92.8 " style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M159.7 86.2 L165 92.8 L170.3 86.2 L165 99.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M165 130.5 L165 150.5 L165 157.2 L165 157.2 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;stroke-width:3;"></path>
+  <path d="M159.7 157.2 L165 157.2 L170.3 157.2 L165 170.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;stroke-width:3;"></path>
+  <text x="164.3" y="221.5" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;">publica</text>
+  <path d="M156.3 201.5 L145 221.5 L145 234.8 L145 234.8 " style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M139.7 228.2 L145 234.8 L150.3 228.2 L145 241.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M192.5 194.5 L280 221.5 L327.3 239.2 L327.3 239.2 " style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M319.2 241.8 L327.3 239.2 L322.9 231.8 L333.5 241.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;stroke-width:3;"></path>
+  <text x="464.7" y="79.5" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;">consome</text>
+  <path d="M407 241.5 L448.3 221.5 L448.3 186 L448.3 186 L448.3 150.5 L448.3 150.5 L448.3 115 L448.3 115 L448.3 79.5 L448.3 79.5 L451.5 71.8 L451.5 71.8 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;stroke-width:3;"></path>
+  <path d="M456.4 73.9 L451.5 71.8 L446.6 69.7 L456.7 59.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M375 272.5 L375 292.5 L375 299.2 L375 299.2 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;stroke-width:3;"></path>
+  <path d="M369.7 299.2 L375 299.2 L380.3 299.2 L375 312.5 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;stroke-width:3;"></path>
+  <text x="310.9" y="363.5" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;">publica</text>
+  <path d="M375 343.5 L375 363.5 L411.2 380.6 L411.2 380.6 " style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M402.9 382.6 L411.2 380.6 L407.5 373 L417.3 383.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M402 332.6 L583.3 363.5 L637.9 381.4 L637.9 381.4 " style="stroke:#33322E;fill:none;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M629.9 384.4 L637.9 381.4 L633.2 374.3 L644.2 383.5 Z" style="stroke:#33322E;fill:#33322E;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M490.7 383.5 L543.3 363.5 L543.3 328 L543.3 328 L543.3 292.5 L543.3 292.5 L543.3 257 L543.3 257 L543.3 221.5 L543.3 221.5 L205.8 189.8 L205.8 189.8 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;stroke-width:3;"></path>
+  <path d="M206.3 184.5 L205.8 189.8 L205.3 195.1 L192.5 188.6 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;stroke-width:3;"></path>
+  <path d="M700.2 383.5 L711.5 363.5 L711.5 328 L711.5 328 L711.5 292.5 L711.5 292.5 L711.5 257 L711.5 257 L711.5 221.5 L711.5 221.5 L711.5 186 L711.5 186 L711.5 150.5 L711.5 150.5 L711.5 115 L711.5 115 L711.5 79.5 L711.5 79.5 L527.4 53.2 L527.4 53.2 " style="stroke:#33322E;fill:none;stroke-dasharray:6 6;stroke-width:3;"></path>
+  <path d="M528.2 47.9 L527.4 53.2 L526.7 58.5 L514.3 51.3 Z" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;stroke-width:3;"></path>
+  <rect x="412.5" y="28.5" height="31" width="102" data-name="reservation" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;stroke-width:3;"></rect>
+  <text x="463.5" y="50" style="fill: #33322E;font:bold  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="reservation">reservation</text>
+  <rect x="28.5" y="99.5" height="31" width="273" data-name="PendingReservationCreatedEvent" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:6 6;stroke-width:3;"></rect>
+  <text x="165" y="121" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="PendingReservationCreatedEvent">PendingReservationCreatedEvent</text>
+  <rect x="137.5" y="170.5" height="31" width="55" data-name="flight" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;stroke-width:3;"></rect>
+  <text x="165" y="192" style="fill: #33322E;font:bold  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="flight">flight</text>
+  <rect x="65.5" y="241.5" height="31" width="160" data-name="FlightBookedEvent" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:6 6;stroke-width:3;"></rect>
+  <text x="145.5" y="263" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="FlightBookedEvent">FlightBookedEvent</text>
+  <rect x="265.5" y="241.5" height="31" width="220" data-name="DeniedFlightBookingEvent" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:6 6;stroke-width:3;"></rect>
+  <text x="375.5" y="263" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="DeniedFlightBookingEvent">DeniedFlightBookingEvent</text>
+  <rect x="348.5" y="312.5" height="31" width="54" data-name="hotel" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:none;stroke-width:3;"></rect>
+  <text x="375.5" y="334" style="fill: #33322E;font:bold  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="hotel">hotel</text>
+  <rect x="342.5" y="383.5" height="31" width="216" data-name="DeniedHotelBookingEvent" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:6 6;stroke-width:3;"></rect>
+  <text x="450.5" y="405" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="DeniedHotelBookingEvent">DeniedHotelBookingEvent</text>
+  <rect x="613.5" y="383.5" height="31" width="157" data-name="HotelBookedEvent" style="stroke:#33322E;fill:#eee8d5;stroke-dasharray:6 6;stroke-width:3;"></rect>
+  <text x="692" y="405" style="fill: #33322E;font:normal  12pt Helvetica, Helvetica, sans-serif;text-anchor: middle;" data-name="HotelBookedEvent">HotelBookedEvent</text>
+</svg>

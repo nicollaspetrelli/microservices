@@ -1,0 +1,817 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Parte 3 - Workshop de Microsserviços</title>
+
+        <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+        <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="../reveal.js/dist/theme/white.css">
+        <link rel="stylesheet" href="../reveal.js/plugin/highlight/zenburn.css">
+        <link rel="stylesheet" href="../css/white-v2.css">
+        <link rel="stylesheet" href="../css/app.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Microsserviços</h1>
+                    <h2>Parte 3</h2>
+                </section>
+
+                <section> <!-- gRPC -->
+                    <section>
+                        <h1>gRPC</h1>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">gRPC</h3>
+                        <h2>O que é RPC?</h2>
+                        <blockquote class="smaller">
+                            Remote Procedure Call (RPC) é uma tecnologia de comunicação entre processos que permite a um
+                            programa de computador chamar um procedimento em outro espaço de endereçamento,
+                            implementando o modelo cliente-servidor de computação distribuída
+                        </blockquote>
+                        <a href="https://pt.wikipedia.org/wiki/Chamada_de_procedimento_remoto" class="smallest"
+                           target="_blank" rel="noopener">
+                            Wikipedia
+                        </a>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">gRPC</h3>
+                        <h2>O que é gRPC?</h2>
+                        <p>
+                            Framework RPC de alta performance implementado em HTTP/2 que pode rodar em qualquer ambiente
+                        </p>
+                        <p class="fragment">
+                            Desenvolvido pelo Google em 2015 como a próxima geração do <em>Stubby</em> e liberado em
+                            2016
+                        </p>
+                        <p class="fragment">
+                            Possui suporte para <em><a href="https://grpc.io/blog/grpc-load-balancing/" target="_blank"
+                                                       rel="noopener">load balancing</a>, tracing, health checking,</em>
+                            autenticação e outras funcionalidades
+                        </p>
+                        <a href="https://grpc.io/" class="smallest" target="_blank" rel="noopener">grpc.io</a>
+                    </section>
+                    <section>
+                        <figure class="text-center">
+                            <img src="https://grpc.io/img/landing-2.svg" alt="gRPC">
+                            <figcaption>
+                                <a href="https://grpc.io/docs/what-is-grpc/introduction/" class="smallest"
+                                   target="_blank"
+                                   rel="noopener">
+                                    grpc.io/docs/what-is-grpc/introduction
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">gRPC</h3>
+                        <h2>O que são “Protocol Buffers”?</h2>
+                        <p>
+                            Mecanismo agnóstico de linguagem e plataforma para serializar dados estruturados
+                        </p>
+                        <p class="fragment">
+                            Semelhante a um <em>Schema</em>, onde definimos como os dados serão estruturados
+                        </p>
+                        <p class="fragment">
+                            E com geração automática de código-fonte do servidor e do cliente em diversas linguagens
+                        </p>
+                        <a href="https://developers.google.com/protocol-buffers" class="smallest" target="_blank"
+                           rel="noopener">
+                            developers.google.com/protocol-buffers
+                        </a>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">gRPC</h3>
+                        <h2>Formatos de Comunicação</h2>
+                        <ul>
+                            <li>Unário</li>
+                            <li>Streaming do Servidor</li>
+                            <li>Streaming do Cliente</li>
+                            <li>Streaming Bidirecional</li>
+                        </ul>
+                        <p>
+                            <a href="https://grpc.io/docs/what-is-grpc/core-concepts/#rpc-life-cycle" class="smallest"
+                               target="_blank" rel="noopener">
+                                grpc.io/docs/what-is-grpc/core-concepts
+                            </a>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Comunicação gRPC</h4>
+                        <h3>Unário</h3>
+                        <p>
+                            Formato mais tradicional de comunicação, onde o cliente envia uma requisição e o servidor
+                            retorna a resposta
+                        </p>
+                        <p class="fragment">
+                            Assim que o cliente invoca o método <em>stub</em>, o servidor é notificado com os metadados
+                            do cliente para essa chamada, o nome do método e o <em>timeout (se aplicável)</em>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Comunicação gRPC</h4>
+                        <h3>Unário</h3>
+                        <p>
+                            O servidor pode então enviar de volta seus próprios metadados iniciais <em>(que devem ser
+                            enviados antes de qualquer resposta)</em> imediatamente ou esperar pela requisição do
+                            cliente
+                        </p>
+                        <p class="fragment">
+                            Assim que o servidor receber a mensagem de requisição do cliente, ele faz o que for
+                            necessário e a resposta é então retornada com o status <em>(código e mensagem opcional)</em>
+                            e possíveis metadados finais
+                        </p>
+                    </section>
+                    <section>
+                        <h4 class="subtitle">Comunicação gRPC</h4>
+                        <h3>Streaming do Servidor</h3>
+                        <p>
+                            Cenário onde o servidor retorna um <em>streaming</em> de respostas ao invés de uma única
+                        </p>
+                        <p class="fragment">
+                            O cliente completa seu processamento depois que recebe todas as mensagens do servidor
+                        </p>
+                    </section>
+                    <section>
+                        <h4 class="subtitle">Comunicação gRPC</h4>
+                        <h3>Streaming do Cliente</h3>
+                        <p>
+                            Situação onde o cliente envia um <em>streaming</em> de mensagens em uma requisição
+                        </p>
+                        <p class="fragment">
+                            O servidor responde com uma única mensagem <em>(com o status e possíveis metadados
+                            finais)</em>, tipicamente &dash; mas não necessariamente &dash; após ter recebido todas as
+                            mensagens do cliente
+                        </p>
+                    </section>
+                    <section>
+                        <h4 class="subtitle">Comunicação gRPC</h4>
+                        <h3>Streaming Bidirecional</h3>
+                        <p>Onde há <em>streaming</em> de mensagens do Cliente e do Servidor</p>
+                        <p class="fragment">
+                            Nesse caso, cada aplicação pode implementar de sua maneira: <span class="fragment">o
+                            servidor pode responder a cada dado recebido</span><span class="fragment">, a cada X
+                            mensagens </span>
+                            <span class="fragment">ou esperar até que um dos lados feche a conexão</span>
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">gRPC</h3>
+                        <h2>Hands-on</h2>
+                    </section>
+                </section>
+
+                <section> <!-- Saga -->
+                    <section>
+                        <h1>Saga</h1>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Problema</h2>
+                        <p>
+                            Em um ambiente de microsserviços, algumas requisições precisarão realizar transações entre
+                            diversos serviços distintos
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Problema</h2>
+                        <p>
+                            Como cada microsserviço possui seu próprio banco de dados, precisamos ter uma forma de
+                            controlar essas transações, parar o processo assim que houver um erro e fazer os devidos
+                            <em>rollbacks</em> em cada um dos serviços
+                        </p>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Conceito</h2>
+                        <p>
+                            Artigo publicado por Hector Garcia-Molina em 1987, focando em <em>Long-Running
+                            Processes</em>
+                        </p>
+                        <p class="fragment">
+                            Sequência de transações locais, onde cada transação irá publicar uma mensagem que irá
+                            disparar a próxima transação local do serviço seguinte
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Conceito</h2>
+                        <p>
+                            Se a transação local falhar <em>(por regra de negócio ou outro motivo)</em>, serão
+                            executadas uma série de transações compensatórias para desfazer as mudanças realizadas até o
+                            momento
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Conceito</h2>
+                        <p>
+                            Normalmente, os registros são primeiro criados com um status <code>Pendente</code> e, após a
+                            confirmação das transações seguintes, são alterados para <code>Ativo</code>
+                        </p>
+                        <p class="fragment">
+                            Nesse caso, transações compensatórias podem simplesmente alterar esse campo para
+                            <code>Inativo</code>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Conceito</h2>
+                        <figure>
+                            <img src="https://docs.microsoft.com/pt-pt/azure/architecture/reference-architectures/saga/images/saga-overview.png"
+                                 alt="SAGA">
+                            <figcaption>
+                                <a href="https://docs.microsoft.com/pt-pt/azure/architecture/reference-architectures/saga/saga"
+                                   class="smallest" target="_blank" rel="noopener">
+                                    docs.microsoft.com
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Coordenando Sagas</h2>
+                        <h4>Coreografia</h4>
+                        <p>Cada transação local publica eventos que irão desencadear transações em outros serviços</p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Coordenando Sagas</h2>
+                        <h4>Coreografia</h4>
+                        <img src="https://chrisrichardson.net/i/sagas/Create_Order_Saga.png" alt="SAGA - Coreografia">
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Coordenando Sagas</h2>
+                        <h4>Orquestração</h4>
+                        <p>Um objeto central (orquestrador) é responsável por invocar cada transação dos serviços</p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Coordenando Sagas</h2>
+                        <h4>Orquestração</h4>
+                        <img src="https://chrisrichardson.net/i/sagas/Create_Order_Saga_Orchestration.png"
+                             alt="SAGA - Orquestração">
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Referências</h2>
+                        <ul>
+                            <li>
+                                <a href="https://microservices.io/patterns/data/saga.html" class="smaller"
+                                   target="_blank"
+                                   rel="noopener">
+                                    microservices.io/patterns/data/saga.html
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://solace.com/blog/microservices-choreography-vs-orchestration/"
+                                   class="smaller" target="_blank" rel="noopener">
+                                    solace.com/blog/microservices-choreography-vs-orchestration
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://chrisrichardson.net/post/microservices/2019/07/09/developing-sagas-part-1.html"
+                                   class="smaller" target="_blank" rel="noopener">
+                                    chrisrichardson.net
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Saga</h3>
+                        <h2>Hands-on</h2>
+                        <a href="img/saga.svg" target="_blank" rel="oopener" class="small">
+                            Ver diagrama &raquo;
+                        </a>
+                    </section>
+                </section> <!-- Saga -->
+
+                <section> <!-- CQRS -->
+                    <section data-auto-animate> <!-- CQS -->
+                        <ul class="h1 inline">
+                            <li data-id="span-C">C</li>
+                            <li data-id="span-Q">Q</li>
+                            <li data-id="span-S">S</li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <ul class="h1 inline">
+                            <li data-id="span-C" class="clear-left">C</li>
+                            <li class="fragment">ommand</li>
+                            <li data-id="span-Q" class="clear-left">Q</li>
+                            <li class="fragment">uery</li>
+                            <li data-id="span-S" class="clear-left">S</li>
+                            <li class="fragment">eparation</li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">CQS</h3>
+                        <h2>Conceito</h2>
+                        <p>
+                            Conceito elaborado por Bertrand Meyer <em>(criador da linguagem Eiffel e do princípio
+                            Design by Contract)</em>:
+                        </p>
+                        <blockquote>
+                            Asking a question should not change the answer
+                        </blockquote>
+
+                        <a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation"
+                           target="_blank" rel="noopener" class="smallest" data-id="reference">Wikipedia</a>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQS</h3>
+                        <h2>Conceito</h2>
+                        <p>
+                            Conceito elaborado por Bertrand Meyer <em>(criador da linguagem Eiffel e do princípio
+                            Design by Contract)</em>:
+                        </p>
+                        <blockquote>
+                            Every method should either be a command that performs an action, or a query that returns
+                            data to the caller, but not both
+                        </blockquote>
+
+                        <a href="https://en.wikipedia.org/wiki/Command%E2%80%93query_separation"
+                           target="_blank" rel="noopener" class="smallest" data-id="reference">Wikipedia</a>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">CQS</h3>
+                        <h2>Exemplo</h2>
+                        <pre data-id="cqs-code"><code class="php" data-trim>
+                            class Employee {
+                                public function increaseWage(float $amount): float {
+                                    $this->wage += $amount;
+                                    return $this->wage;
+                                }
+                            }
+                        </code></pre>
+                        <p class="smallest">Exemplo de código comumente encontrado</p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQS</h3>
+                        <h2>Exemplo</h2>
+                        <pre data-id="cqs-code"><code class="php" data-trim>
+                            class Employee {
+                                public function increaseWage(float $amount): void {
+                                    $this->wage += $amount;
+                                }
+
+                                public function getWage(): float {
+                                    return $this->wage;
+                                }
+                            }
+                        </code></pre>
+                        <p class="smallest">Exemplo de código refatorado usando CQS</p>
+                    </section>  <!-- CQS -->
+
+                    <section data-auto-animate data-auto-animate-restart>  <!-- CQRS -->
+                        <ul class="h1 inline">
+                            <li data-id="span-C">C</li>
+                            <li data-id="span-Q">Q</li>
+                            <li data-id="span-R">R</li>
+                            <li data-id="span-S">S</li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <ul class="h1 inline">
+                            <li data-id="span-C" class="clear-left">C</li>
+                            <li class="fragment">ommand</li>
+                            <li data-id="span-Q" class="clear-left">Q</li>
+                            <li class="fragment">uery</li>
+                            <li data-id="span-R" class="clear-left">R</li>
+                            <li class="fragment">esponsibility</li>
+                            <li data-id="span-S" class="clear-left">S</li>
+                            <li class="fragment">egregation</li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Conceito</h2>
+                        <p>
+                            É um <b>padrão arquitetural</b> descrito pela primeira vez em 2010 por Greg Young
+                        </p>
+                        <p class="fragment">
+                            Separação <em>(em objetos distintos)</em> da responsabilidade de escrita e leitura dos dados
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Conceito</h2>
+                        <p>
+                            Os <em>Commands</em> precisam demonstrar a intenção do usuário em executar aquela ação
+                        </p>
+                        <p class="fragment">
+                            <em>
+                                Exemplos: &ldquo;Cadastrar Endereço&rdquo;, &ldquo;Calcular Imposto&rdquo;,
+                                &ldquo;Adicionar Item ao Carrinho&rdquo;
+                            </em>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Exemplo</h2>
+                        <pre data-id="cqrs-code"><code class="php" data-trim>
+                            class Employee {
+                                public function increaseWage(float $amount): void {
+                                    $this->wage += $amount;
+                                }
+
+                                public function getWage(): float {
+                                    return $this->wage;
+                                }
+                            }
+                        </code></pre>
+                        <p class="smallest">Exemplo visto em CQS</p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Exemplo</h2>
+                        <pre data-id="cqrs-code"><code class="php" data-trim>
+                            class IncreaseEmployeeWageCommand {
+                                public function __construct(Employee $employee, float $amount) {
+                                    // ...
+                                }
+                            }
+
+                            class EmployeeFinder {
+                                // ...
+                            }
+                        </code></pre>
+                        <p class="smallest">Exemplo aplicando CQRS</p>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Por quê?</h2>
+                        <p>
+                            Escalar a aplicação tem se tornado cada vez mais comum nos últimos tempos, mas mesmo assim
+                            ainda existe um grande gargalo<span class="fragment">: o banco de dados</span>
+                        </p>
+                        <p class="fragment">
+                            Há uma grande complexidade envolvida em escalar bancos de dados &mdash; e muitas vezes um
+                            alto custo também
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Por quê?</h2>
+                        <p>
+                            Além disso, para exibirmos um dado para o cliente, às vezes temos que aplicar várias regras
+                            de negócio, realizar <code>JOINs</code> <em>(se usarmos bancos SQL)</em> e outras ações para
+                            formatar a informação
+                        </p>
+                        <p class="fragment">
+                            Tudo isto pode custar muito tempo e até mesmo causar <em>timeouts, deadlocks</em> e outras
+                            situações terríveis para DBAs
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Por quê?</h2>
+                        <p>
+                            O uso de bancos NoSQL ajudou em muito ao guardar documentos em formatos um pouco mais
+                            parecidos ao que o usuário final irá visualizar
+                        </p>
+                        <p class="fragment">
+                            Ainda assim, em uma aplicação comum a frequência de escritas é muito menor do que a de
+                            leitura <em>(em proporções até maiores que 80/20%)</em>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Por quê?</h2>
+                        <p>
+                            Então, por que geralmente facilitamos a escrita ao invés da leitura ao arquitetar nossos
+                            bancos de dados?
+                        </p>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Quando usar?</h2>
+                        <ul>
+                            <li>
+                                Se você possui <em>(ou prevê possuir)</em> problemas de performance no banco de dados;
+                            </li>
+                            <li class="fragment">
+                                Quando a lógica de negócio for muito complexa para simples <em>CRUD</em>s;
+                            </li>
+                            <li class="fragment">
+                                E provavelmente em apenas <b>algumas partes</b> de sua aplicação.
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Modelo de Implementação</h2>
+                        <p>
+                            1. Comece separando logicamente <em>Commands</em> e <em>Queries</em> em objetos diferentes
+                        </p>
+                        <pre><code class="php" data-trim>
+                            class EmployeeFinder() {
+                            }
+
+                            class IncreaseEmployeeWageCommand {
+                                public function __construct(Employee $employee, float $amount) {
+                                }
+                            }
+
+                            class PromoteEmployeeCommand {
+                                public function __construct(Employee $employee, Position $newPosition) {
+                                }
+                            }
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Modelo de Implementação</h2>
+                        <p>
+                            2. Crie uma base de dados somente de leitura e faça seus <em>Commands</em> a atualizarem
+                            assim que algo for persistido
+                        </p>
+                        <figure class="text-center">
+                            <img src="https://image.slidesharecdn.com/axig20y3sauaay86swio-signature-f97b13fbab4069b0bd6da421462f5b71a919c52893ea6b392fa68bb3fa141f08-poli-181029012659/95/cqrs-22-638.jpg"
+                                 alt="CQRS">
+                            <figcaption>
+                                <a href="https://www.slideshare.net/gyuwonyi/cqrs-121010087" class="smallest"
+                                   target="_blank" rel="noopener">
+                                    slideshare.net/gyuwonyi/cqrs-121010087
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Modelo de Implementação</h2>
+                        <p>
+                            3. Faça a atualização da base de leitura acontecer de forma assíncrona, para não atrapalhar
+                            na performance
+                        </p>
+                        <p class="fragment">
+                            <br>
+                            Dependendo de sua regra de negócio, você pode começar criando um procedimento recorrente
+                            <em>(ex: através do Cron)</em> para atualizar sua base em intervalos de tempo específico
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Modelo de Implementação</h2>
+                        <p>
+                            3. Faça a atualização da base de leitura acontecer de forma assíncrona, para não atrapalhar
+                            na performance
+                        </p>
+                        <p>
+                            <br>
+                            Mas o mais indicado é utilizar um sistema de filas: ao receber um comando, publique uma
+                            mensagem dizendo que o registro <code>X</code> da tabela <code>Y</code> precisa ser
+                            atualizado e crie um subscriber que irá executar essa tarefa
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Modelo de Implementação</h2>
+                        <p>
+                            4. Se necessário, altere a base de leitura para torná-la uma agregação de dados de
+                            diferentes tabelas para entregar à <em>view</em> exatamente o que ela precisa
+                        </p>
+                        <p class="fragment">
+                            <br>
+                            Esse base também é conhecida como banco de dados desnormalizado e irá agir similarmente a
+                            um <code>DTO</code>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Modelo de Implementação</h2>
+                        <p>
+                            5. Utilize sistema de filas para executar os comandos
+                        </p>
+                        <p class="fragment">
+                            <br>
+                            Ao receber uma requisição, valide minimamente os dados e publique uma mensagem dizendo
+                            que o comando <code>X</code> precisa ser executado <em>(com os dados recebidos)</em>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Modelo de Implementação</h2>
+                        <p>
+                            5. Utilize sistema de filas para executar os comandos
+                        </p>
+                        <p>
+                            <br>
+                            Então, crie um <em>subscriber</em> para executar esses comandos e emita uma resposta
+                            indicando a finalização
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Modelo de Implementação</h2>
+                        <p>
+                            5. Utilize sistema de filas para executar os comandos
+                        </p>
+                        <p>
+                            <br>
+                            Essa resposta pode ser um evento para a UI <em>(dependendo da linguagem que você usa)</em>,
+                            um email para o usuário ou uma <em>push notification</em>... você também pode trabalhar
+                            com <em>long polling, websockets, service workers</em> ou outras abordagens
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Modelo de Implementação</h2>
+                        <figure class="text-center">
+                            <img src="img/cqrs.jpg" alt="CQRS">
+                            <figcaption>
+                                <a href="https://www.eduardopires.net.br/2016/07/cqrs-o-que-e-onde-aplicar/"
+                                   class="smallest"
+                                   target="_blank" rel="noopener">
+                                    eduardopires.net.br
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Consistência Eventual</h2>
+                        <p>
+                            Com essa prática, nosso banco de dados leitura pode ficar alguns segundos <em>(ou até
+                            minutos, dependendo da abordagem)</em> desatualizado
+                        </p>
+                        <p class="fragment">
+                            E a dúvida é: &ldquo;Mas essa prática não é ruim?&rdquo;
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Consistência Eventual</h2>
+                        <p>
+                            Temos uma tendência de valorizar demais a consistência de dados, mas a inconsistência é algo
+                            muito comum em nosso dia-a-dia &mdash; tanto físico quanto virtual
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Consistência Eventual</h2>
+                        <p>
+                            Dados podem ser consultados e alterados por usuários simultaneamente conectados
+                        </p>
+                        <p class="fragment">
+                            Os dados exibidos em uma tela já podem ter sido alterados por outro usuário
+                        </p>
+                        <p class="fragment">
+                            Então é possível afirmar que toda informação exibida já pode estar obsoleta
+                        </p>
+                    </section>
+                    <section class="text-center" data-auto-animate>
+                        <img src="https://pbs.twimg.com/media/D0nSD7yX0AAru3t?format=jpg&name=large"
+                             alt="Consistência Eventual - Twitter @gregyoung" class="r-stretch">
+                        <a href="https://twitter.com/gregyoung/status/1101642600342265857/photo/1"
+                           style="display: none">
+                            Twitter @gregyoung
+                        </a>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Vantagens</h2>
+                        <ul>
+                            <li>
+                                Todos comandos são assíncronos e processados em fila, assim diminui-se o tempo de espera
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Vantagens</h2>
+                        <ul>
+                            <li>
+                                Os processos que envolvem regras de negócio existem apenas no sentido da inclusão ou
+                                alteração do estado das informações
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Vantagens</h2>
+                        <ul>
+                            <li>
+                                As consultas são feitas de forma separada e independente e não dependem do processamento
+                                dos comandos
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Vantagens</h2>
+                        <ul>
+                            <li>
+                                É possível escalar separadamente os processos de execução de comandos e consulta
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Desvantagens</h2>
+                        <ul>
+                            <li>
+                                Maior complexidade na aplicação, aumentando o tempo para os primeiros releases <em>(mas
+                                potencialmente diminuindo tempos de reescrita no futuro para melhorias de
+                                performance)</em>
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Desvantagens</h2>
+                        <ul>
+                            <li>
+                                Garantir consistência dos dados torna-se cada vez mais complexo <em>(lembrando do
+                                teorema CAP)</em>
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Desvantagens</h2>
+                        <ul>
+                            <li>
+                                Usar outros bancos de dados, sistemas de fila e <em>subscribers</em> implicam em mais
+                                pontos de falha, necessidade de mais monitoramento e mecanismos de segurança para manter
+                                todo o ambiente rodando corretamente
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Referências</h2>
+                        <ul>
+                            <li>
+                                <a href="https://cqrs.wordpress.com/documents/" class="smaller" target="_blank"
+                                   rel="noopener">
+                                    CQRS Documents by Greg Young
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://martinfowler.com/bliki/CQRS.html" class="smaller" target="_blank"
+                                   rel="noopener">
+                                    martinfowler.com
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.eduardopires.net.br/2016/07/cqrs-o-que-e-onde-aplicar/"
+                                   class="smaller" target="_blank" rel="noopener">
+                                    eduardopires.net.br
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.cqrs.nu/" class="smaller" target="_blank" rel="noopener">
+                                    CQRS.nu
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://aka.ms/cqrs" class="smaller" target="_blank" rel="noopener">
+                                    CQRS Journey
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://community.risingstack.com/when-to-use-cqrs/" class="smaller"
+                                   target="_blank" rel="noopener">
+                                    Artigo: &ldquo;When to use CQRS?!&rdquo;
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Hands-on</h2>
+                        <figure>
+                            <img src="img/cqrs-escrita.svg" alt="CQRS - Escrita">
+                        </figure>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">CQRS</h3>
+                        <h2>Hands-on</h2>
+                        <figure>
+                            <img src="img/cqrs-leitura.svg" alt="CQRS - Escrita">
+                        </figure>
+                    </section>
+                </section> <!-- CQRS -->
+            </div>
+        </div>
+
+        <script src="../reveal.js/dist/reveal.js"></script>
+        <script src="../reveal.js/plugin/highlight/highlight.js"></script>
+        <script>
+            Reveal.initialize({
+                hash: true,
+                mouseWheel: true,
+                plugins: [RevealHighlight]
+            });
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,41 @@
+Sending build context to Docker daemon  8.704kB
+Step 1/2 : FROM postgres:13-alpine
+13-alpine: Pulling from library/postgres
+5843afab3874: Already exists
+525703b16f79: Pulling fs layer
+86f8340bd3d9: Pulling fs layer
+aebe2e63a0a2: Pulling fs layer
+f19101b5a9a6: Pulling fs layer
+c356e016a868: Pulling fs layer
+f8af050c4eff: Pulling fs layer
+993925c99077: Pulling fs layer
+c356e016a868: Waiting
+f8af050c4eff: Waiting
+993925c99077: Waiting
+f19101b5a9a6: Waiting
+525703b16f79: Verifying Checksum
+525703b16f79: Download complete
+86f8340bd3d9: Download complete
+525703b16f79: Pull complete
+86f8340bd3d9: Pull complete
+c356e016a868: Verifying Checksum
+c356e016a868: Download complete
+f19101b5a9a6: Verifying Checksum
+f19101b5a9a6: Download complete
+aebe2e63a0a2: Verifying Checksum
+aebe2e63a0a2: Download complete
+f8af050c4eff: Download complete
+993925c99077: Verifying Checksum
+993925c99077: Download complete
+aebe2e63a0a2: Pull complete
+f19101b5a9a6: Pull complete
+c356e016a868: Pull complete
+f8af050c4eff: Pull complete
+993925c99077: Pull complete
+Digest: sha256:bcb6ecc4e7388db0fd91717468b8508bb5c6a1b37ab3eae8817af2c25d7fb7d8
+Status: Downloaded newer image for postgres:13-alpine
+ ---> d3a70afcf848
+Step 2/2 : COPY ./db.sql /docker-entrypoint-initdb.d
+ ---> 3681adc8c42f
+Successfully built 3681adc8c42f
+Successfully tagged ms/grades-db:latest

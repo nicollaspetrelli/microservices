@@ -1,0 +1,72 @@
+.d-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.d-flex.half-columns > div {
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.px-1 {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.mb-2 {
+  margin-bottom: 1em;
+}
+
+.mx-auto {
+  margin: 0 auto;
+}
+
+pre {
+  scrollbar-width: thin;
+}
+
+.smaller {
+  font-size: 0.8em;
+}
+blockquote.smaller {
+  font-size: 0.9em;
+}
+
+.small {
+  font-size: 0.6em;
+}
+
+ul.inline {
+  margin-left: 0;
+  list-style-type: none;
+}
+ul.inline > li {
+  float: left;
+}
+ul.inline > li.clear-left {
+  clear: left;
+}
+.invisible {
+  display: none;
+}
+.smallest {
+  font-size: 0.45em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+figure > img {
+  margin-bottom: 0 !important;
+}
+section > figure:first-child > img {
+  margin-top: 0 !important;
+}
+figcaption > .smallest {
+  font-size: 1em;
+}
+figcaption {
+  font-size: 0.5em;
+  font-style: italic;
+}

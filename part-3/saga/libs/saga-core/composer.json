@@ -1,0 +1,30 @@
+{
+    "name": "vcampitelli/saga-core",
+    "description": "Core for the Microservices Workshop about Saga",
+    "type": "library",
+    "license": "private",
+    "autoload": {
+        "psr-4": {
+            "Framework\\Core\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vinícius Campitelli",
+            "email": "1877191+vcampitelli@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-mongodb": "*",
+        "charm/uuid": "^0.0.6",
+        "mongodb/mongodb": "^1.9",
+        "monolog/monolog": "^2.2",
+        "php-amqplib/php-amqplib": "^3.0",
+        "php-di/php-di": "^6.3",
+        "symfony/messenger": "^5.3"
+    }
+}

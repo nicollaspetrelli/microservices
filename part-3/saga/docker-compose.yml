@@ -1,0 +1,83 @@
+version: "3.9"
+services:
+  # Main reservation app
+  reservation:
+    image: reservation
+    build:
+      context: ./reservation
+    working_dir: /app
+    volumes:
+      - ./reservation:/app
+      - ./libs:/srv/framework
+      - reservation_vendor:/app/vendor
+    env_file:
+      - env/app_common.env
+    environment:
+      APP_NAME: reservation
+    depends_on:
+      - rabbitmq
+      - mongo
+    ports:
+      - 8080:80
+
+  # Flight Microservice
+  flight:
+    image: flight
+    build:
+      context: ./flight
+    working_dir: /app
+    volumes:
+      - ./flight:/app
+      - ./libs:/srv/framework
+      - flight_vendor:/app/vendor
+    env_file:
+      - env/app_common.env
+    environment:
+      APP_NAME: flight
+    depends_on:
+      - rabbitmq
+      - mongo
+
+  # Hotel Microservice
+  hotel:
+    image: hotel
+    build:
+      context: ./hotel
+    working_dir: /app
+    volumes:
+      - ./hotel:/app
+      - ./libs:/srv/framework
+      - hotel_vendor:/app/vendor
+    env_file:
+      - env/app_common.env
+    environment:
+      APP_NAME: hotel
+    depends_on:
+      - rabbitmq
+      - mongo
+
+  # RabbitMQ as a broker
+  rabbitmq:
+    image: rabbitmq:3-alpine
+    env_file:
+      - env/rabbitmq.env
+    volumes:
+      - ./rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+    environment:
+      - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS=-rabbit load_definitions "/etc/rabbitmq/definitions.json"
+
+  # MongoDB as storage
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    env_file:
+      - env/mongo.env
+    volumes:
+      - mongoDb:/data/db
+
+volumes:
+  reservation_vendor:
+  flight_vendor:
+  hotel_vendor:
+  mongoDb:

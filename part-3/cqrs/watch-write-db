@@ -1,0 +1,2 @@
+#!/bin/sh
+docker-compose exec users_db watch -n 1 'psql -U postgres -c "SELECT * FROM users"'

@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: acl-service
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app: acl
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acl-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: acl
+#        kube-monkey/enabled: enabled
+#        kube-monkey/identifier: monkey-victim
+#        kube-monkey/mtbf: '2'
+#        kube-monkey/kill-mode: "fixed"
+#        kube-monkey/kill-value: '1'
+    spec:
+#      template:
+#        metadata:
+#          labels:
+#            kube-monkey/enabled: enabled
+#            kube-monkey/identifier: monkey-victim
+      containers:
+        - name: acl
+          image: ms/acl:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: docker
+              value: "true"
+            - name: APP_REDIS_HOST
+              value: redis
+  selector:
+    matchLabels:
+      app: acl

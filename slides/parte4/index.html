@@ -1,0 +1,472 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Parte 4 - Workshop de Microsserviços</title>
+
+        <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+        <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="../reveal.js/dist/theme/white.css">
+        <link rel="stylesheet" href="../css/white-v2.css">
+        <link rel="stylesheet" href="../css/app.css">
+    </head>
+
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Microsserviços</h1>
+                    <h2>Parte 4</h2>
+                </section>
+
+                <section> <!-- Micro-frontends -->
+                    <section>
+                        <h1>Micro-frontends</h1>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Preparação</h2>
+                        <pre><code data-trim>
+                            cd caminho/para/o/repositorio
+                            git pull
+                            cd part-4/microfrontends
+                            docker-compose up -d
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Conceito</h2>
+                        <p>
+                            Apareceu pela primeira vez em 2016 no
+                            <a href="https://www.thoughtworks.com/radar/techniques/micro-frontends" target="_blank" rel="noopener">
+                                Thoughtworks Technology Radar
+                            </a>
+                        </p>
+                        <p class="fragment">
+                            Estende os conceitos de microsserviços para o mundo do frontend <em>(que é geralmente
+                            desenvolvido por uma equipe separada)</em>, mas que acaba crescendo e ficando cada vez mais
+                            difícil de manter
+                        </p>
+                        <p class="fragment">Isso é o que chamamos de <b>front-end monolítico</b></p>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Conceito</h2>
+                        <p>
+                            A ideia é pensar a aplicação como uma composição de recursos que pertencem a diferentes
+                            equipes
+                        </p>
+                        <p class="fragment">
+                            Cada equipe tem uma área distinta de negócios ou missão, da qual é especialista
+                        </p>
+                        <p class="fragment">
+                            Cada equipe é multifuncional e desenvolve seus recursos <em>end-to-end</em>, desde banco de
+                            dados até a interface do usuário
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Arquitetura com Frontend monolítico</h2>
+                        <figure>
+                            <img src="https://micro-frontends.org/ressources/diagrams/organisational/monolith-frontback-microservices.png"
+                                 alt="Micro-frontends">
+                            <figcaption>
+                                <a href="https://micro-frontends.org/" class="smallest" target="_blank" rel="noopener">
+                                    micro-frontends.org
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Arquitetura com Micro-frontends</h2>
+                        <figure>
+                            <img src="https://micro-frontends.org/ressources/diagrams/organisational/verticals-headline.png"
+                                 alt="Micro-frontends">
+                            <figcaption>
+                                <a href="https://micro-frontends.org/" class="smallest" target="_blank" rel="noopener">
+                                    micro-frontends.org
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Mal-entendido</h2>
+                        <p>
+                            Não foi <b>feito para</b> reusar componentes <em>(mesmo que eventualmente serão)</em>
+                        </p>
+                        <p class="fragment">É para facilitar a <b>escala</b>!</p>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Referências</h2>
+                        <h4>Teóricas</h4>
+                        <ul class="smaller">
+                            <li>
+                                <a href="https://micro-frontends.org/" target="_blank" rel="noopener">
+                                    micro-frontends.org
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/watch?v=BuRB3djraeM" target="_blank" rel="noopener">
+                                    Palestra do Luca Mezzalira
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.n-ix.com/micro-frontends/#Advantages%20of%20micro%20frontend%20architecture" target="_blank" rel="noopener">
+                                    Micro frontends: pros, cons, best practices
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/watch?v=GHlt3yFCEW0" target="_blank" rel="noopener">
+                                    Live do Rodrigo Branas
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/watch?v=KZpSghOWOnE" target="_blank" rel="noopener">
+                                    Microfrontends na prática (Wesley Willians)
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Referências</h2>
+                        <h4>Práticas</h4>
+                        <ul class="smaller">
+                            <li>
+                                <a href="https://the-tractor.store/" target="_blank" rel="noopener">
+                                    the-tractor.store
+                                </a> <em>
+                                (<a href="https://github.com/naltatis/micro-frontends-in-action-code" target="_blank"
+                                    rel="noopener">ver código</a>)
+                            </em>
+                            </li>
+                            <li>
+                                React
+                                <ul>
+                                    <li>
+                                        <a href="https://github.com/react-microfrontends" target="_blank"
+                                           rel="noopener">
+                                            github.com/react-microfrontends
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://blog.bitsrc.io/how-to-develop-microfrontends-using-react-step-by-step-guide-47ebb479cacd"
+                                           target="_blank" rel="noopener">
+                                            How to Develop Microfrontends Using React: Step by Step Guide
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://medium.com/bb-tutorials-and-thoughts/7-different-ways-to-implement-micro-frontends-with-react-907b5e262230"
+                                           target="_blank" rel="noopener">
+                                            7 Different Ways To Implement Micro-Frontends With React
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Vue
+                                <ul>
+                                    <li>
+                                        <a href="https://github.com/vue-microfrontends" target="_blank" rel="noopener">
+                                            github.com/vue-microfrontends
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://itnext.io/setup-a-micro-frontend-architecture-with-vue-and-single-spa-2c89528bf72f"
+                                           target="_blank" rel="noopener">
+                                            Setup a Micro Frontend Architecture With Vue and single-spa
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Referências</h2>
+                        <h4>Bibliotecas</h4>
+                        <ul>
+                            <li>
+                                <a href="https://single-spa.js.org/" target="_blank" rel="noopener">
+                                    single-spa
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://stenciljs.com/" target="_blank" rel="noopener">
+                                    StencilJS
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://bit.dev/frontend-teams" target="_blank" rel="noopener">
+                                    Bit
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Micro-frontends</h3>
+                        <h2>Hands-on</h2>
+                        <p>Acesse <a href="http://localhost:9000/">http://localhost:9000/</a></p>
+                    </section>
+                </section> <!-- Micro-frontends -->
+
+                <section> <!-- Event Sourcing -->
+                    <section>
+                        <h1>Event Sourcing</h1>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Preparação</h2>
+                        <pre><code data-trim>
+                            cd caminho/para/o/repositorio
+                            git pull
+                            cd part-4/event-sourcing
+                            docker-compose up -d
+                        </code></pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Conceito</h2>
+                        <div>
+                            <p>
+                                <b>Padrão</b> arquitetural <em>(como CQRS)</em> que consiste em persistir o estado de
+                                uma entidade como uma sequência de eventos de mudança de estado
+                            </p>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Conceito</h2>
+                        <div>
+                            <p>
+                                Sempre que o estado de uma entidade de negócios muda, um novo evento é anexado à lista
+                                de eventos
+                            </p>
+                            <p>
+                                A aplicação constrói o estado atual da entidade aplicando os eventos <em>(replay)</em>
+                            </p>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Conceito</h2>
+                        <div></div>
+                        <p>
+                            Os eventos são persistidos em um <em>event store</em>, que é um banco de dados de eventos
+                        </p>
+                        <p>
+                            <em>Event store</em> também se comporta como um <em>message broker</em>, permitindo que
+                            serviços se inscrevam em eventos de seu interesse
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h3>Representação</h3>
+                        <figure>
+                            <img src="https://docs.microsoft.com/en-us/azure/architecture/patterns/_images/event-sourcing-overview.png"
+                                 alt="Event Sourcing">
+                            <figcaption>
+                                <a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/event-sourcing"
+                                   class="smallest" target="_blank" rel="noopener">
+                                    docs.microsoft.com
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h3>Arquitetura com CQRS</h3>
+                        <figure>
+                            <img src="https://tsh.io/wp-content/uploads/2019/03/CQRSES-4.png" alt="Event Sourcing">
+                            <figcaption>
+                                <a href="https://tsh.io/blog/cqrs-event-sourcing-php-1/" class="smallest"
+                                   target="_blank" rel="noopener">
+                                    tsh.io/blog
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Vantagens</h2>
+                        <h3>Logs de Auditoria</h3>
+                        <p>
+                            Em projetos tradicionais, essa funcionalidade é geralmente adicionada no final <em>(se
+                            for)</em>, possuindo um risco de existirem ações não mapeadas
+                        </p>
+                        <p>
+                            Com <em>event sourcing</em>, cada mudança de estado corresponde a um <em>(ou mais)</em>
+                            eventos, provendo logs de auditoria por padrão
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Vantagens</h2>
+                        <h3>Consultas temporais fáceis</h3>
+                        <p>
+                            Por manter um histórico completo de cada entidade, implementar uma consulta temporal e
+                            reconstruir o estado histórico de uma entidade é bastante objetivo
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Desvantagens</h2>
+                        <h3>Curva de aprendizado</h3>
+                        <p>
+                            Sair do modelo tradicional de armazenamento de dados pode ser custoso inicialmente
+                        </p>
+                        <p class="fragment">
+                            Entretanto, faz mais sentido em comparação ao mundo real
+                        </p>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Referências</h2>
+                        <ul>
+                            <li>
+                                <a href="https://microservices.io/patterns/data/event-sourcing.html" target="_blank"
+                                   rel="noopener">
+                                    microservices.io
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.youtube.com/watch?v=8JKjvY4etTY" target="_blank" rel="noopener">
+                                    Palestra do Greg Young
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://eventuate.io/whyeventsourcing.html" target="_blank" rel="noopener">
+                                    Why Event Sourcing?
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.slideshare.net/koenighotze/event-sourcing-you-are-doing-it-wrong-devoxx" target="_blank" rel="noopener">
+                                    Palestra: Event Sourcing - You are doing it wrong
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://danielwhittaker.me/2020/02/20/cqrs-step-step-guide-flow-typical-application/" target="_blank" rel="noopener">
+                                    CQRS + Event Sourcing – Step by Step
+                                </a>
+                            </li>
+
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Referências</h2>
+                        <h4>Outros conceitos</h4>
+                        <ul>
+                            <li>
+                                <a href="https://domaincentric.net/blog/event-sourcing-projections" target="_blank" rel="noopener">
+                                    Projections
+                                </a> (<a href="https://developers.eventstore.com/server/v5/projections/user-defined-projections.html" target="_blank" rel="noopener">API</a>)
+                            </li>
+                            <li>
+                                <a href="https://danielwhittaker.me/2014/11/15/aggregate-root-cqrs-event-sourcing/" target="_blank" rel="noopener">
+                                    Aggregate root
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://developers.eventstore.com/clients/http-api/v5/introduction/#optimistic-concurrency-and-idempotence" target="_blank" rel="noopener">
+                                    Optimistic concurrency control
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://docs.axoniq.io/reference-guide/axon-framework/events/event-versioning" target="_blank" rel="noopener">
+                                    Versionamento / upcasting
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.eventstore.com/blog/snapshots-in-event-sourcing" target="_blank"
+                                   rel="noopener">
+                                    Snapshots in Event Sourcing
+                                </a>
+                            </li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Referências</h2>
+                        <h4>Kafka & EventStore</h4>
+                        <ul>
+                            <li>
+                                <a href="https://developers.eventstore.com/" target="_blank" rel="noopener">
+                                    EventStoreDB
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://domaincentric.net/blog/eventstoredb-vs-kafka" target="_blank" rel="noopener">
+                                    EventStoreDB vs Kafka
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.sasaprolic.com/2018/03/why-there-will-be-no-kafka-eventstore.html" target="_blank" rel="noopener">
+                                    Why there will be no Kafka EventStore in prooph
+                                </a>
+                            </li>
+                            <a href="https://stackoverflow.com/questions/17708489/using-kafka-as-a-cqrs-eventstore-good-idea"
+                               target="_blank" rel="noopener">
+                                Using Kafka as a (CQRS) Eventstore. Good idea?
+                            </a>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="subtitle">Event Sourcing</h3>
+                        <h2>Hands-on</h2>
+                        <ul>
+                            <li>
+                                Acessar o container da aplicação
+                                <pre><code data-trim>
+                                    docker-compose exec users_app sh
+                                    cd bin
+                                </code></pre>
+                            </li>
+                            <li>Executar os scripts das pastas <code>amp</code> e <code>es</code></li>
+                            <li>
+                                Checar a interface Web do EventStoreDB em
+                                <a href="http://localhost:2113/web/" target="_blank" rel="noopener">
+                                    http://localhost:2113/web/
+                                </a> com usuário <code>admin</code> e senha <code>changeit</code>
+                            </li>
+                        </ul>
+                    </section>
+                </section> <!-- Event Sourcing -->
+            </div>
+        </div>
+
+        <script src="../reveal.js/dist/reveal.js"></script>
+        <script>
+            document.querySelectorAll('pre.shell-output, code[data-trim]').forEach((node) => {
+                let lines = node.innerHTML.split('\n'),
+                    regex;
+                for (let i = 0; i < lines.length; i++) {
+                    // lines[i] = lines[i].trim();
+                    if (((i === 0) || (i === lines.length - 1)) && (lines[i].trim() === '')) {
+                        lines.splice(i--, 1);
+                        continue;
+                    }
+
+                    if (!regex) {
+                        const count = lines[i].search(/\S/);
+                        if (count < 1) {
+                            break;
+                        }
+                        regex = new RegExp('^\\s{' + count + '}', 'g');
+                    }
+                    lines[i] = lines[i].replace(regex, '');
+                }
+                node.innerHTML = lines.join('\n');
+            });
+            Reveal.initialize({
+                hash: true,
+                mouseWheel: true
+            });
+        </script>
+    </body>
+</html>

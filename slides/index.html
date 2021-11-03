@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Workshop de Microsserviços</title>
+
+        <link rel="stylesheet" href="reveal.js/dist/reset.css">
+        <link rel="stylesheet" href="reveal.js/dist/reveal.css">
+        <link rel="stylesheet" href="reveal.js/dist/theme/white.css">
+        <link rel="stylesheet" href="css/app.css">
+        <style>
+            span {
+              display: inline-block;
+              padding: 0.35em 0.65em;
+              font-size: 0.6em;
+              font-weight: 700;
+              line-height: 1;
+              background-color: #7b8a8b;
+              color: #fff;
+              text-align: center;
+              white-space: nowrap;
+              vertical-align: baseline;
+              border-radius: 0.25rem;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Microsserviços</h1>
+                </section>
+                <section>
+                    <div class="d-flex half-columns mb-2">
+                        <div class="px-1">
+                            <h3><a href="parte1/">Parte 1</a></h3>
+                            <span>Conceitos</span>
+                            <span>Docker Swarm</span>
+                            <span>Caching</span>
+                            <span>HTTP</span>
+                            <span>RabbitMQ</span>
+                            <span>Service Discovery</span>
+                        </div>
+                        <div class="px-1">
+                            <h3><a href="parte2/">Parte 2</a></h3>
+                            <span>API Gateway</span>
+                            <span>Service Mesh</span>
+                            <span>Chaos Engineering</span>
+                        </div>
+                    </div>
+                    <div class="d-flex half-columns">
+                        <div class="px-1">
+                            <h3><a href="parte3/">Parte 3</a></h3>
+                            <span>gRPC</span>
+                            <span>Saga</span>
+                            <span>CQRS</span>
+                        </div>
+                        <div class="px-1">
+                            <h3><a href="parte4/">Parte 4</a></h3>
+                            <span>Micro-frontends</span>
+                            <span>Event Sourcing</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <script src="reveal.js/dist/reveal.js"></script>
+        <script>
+            Reveal.initialize({
+                hash: true,
+                mouseWheel: true
+            });
+        </script>
+    </body>
+</html>
+

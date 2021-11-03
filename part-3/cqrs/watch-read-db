@@ -1,0 +1,6 @@
+#!/bin/sh
+docker-compose exec mongo \
+    watch -n 1 -c \
+    "mongo db -u mongo -p mongo123 \
+    --authenticationDatabase admin \
+    --eval 'db.users.find().toArray()'"

@@ -1,0 +1,27 @@
+{
+    "name": "vcampitelli/reservation-domain",
+    "description": "Domain and Infrastructure layers for the Reservation app",
+    "keywords": [
+        "microservice",
+        "saga"
+    ],
+    "type": "library",
+    "license": "private",
+    "authors": [
+        {
+            "name": "Vinícius Campitelli",
+            "email": "1877191+vcampitelli@users.noreply.github.com",
+            "homepage": "https://viniciuscampitelli.com/"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Reservation\\Domain\\": "src/"
+        }
+    }
+}

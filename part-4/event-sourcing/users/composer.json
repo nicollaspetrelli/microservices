@@ -1,0 +1,47 @@
+{
+    "name": "vcampitelli/cqrs-es-users",
+    "description": "Simple Users App to demonstrate CRQS and Event Sourcing",
+    "keywords": [
+        "microservice",
+        "cqrs",
+        "event sourcing"
+    ],
+    "homepage": "https://github.com/vcampitelli/workshop-microservice",
+    "license": "private",
+    "authors": [
+        {
+            "name": "Vinícius Campitelli",
+            "email": "eu@viniciuscampitelli.com",
+            "homepage": "https://viniciuscampitelli.com/"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "ext-mongodb": "*",
+        "charm/uuid": "^0.0.6",
+        "vcampitelli/cqrs-es-core": "dev-master"
+    },
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Users\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": [
+            "composer update --no-dev --ignore-platform-reqs",
+            "php -S 0.0.0.0:80 -t public"
+        ]
+    },
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/srv/framework/core"
+        }
+    ]
+}

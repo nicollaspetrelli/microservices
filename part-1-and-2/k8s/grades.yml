@@ -1,0 +1,102 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grades-service
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+  selector:
+    app: grades
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grades-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grades
+    spec:
+      containers:
+        - name: grades
+          image: ms/grades:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: docker
+              value: "true"
+            - name: APP_ACL_URL
+              value: "http://acl-service/"
+            - name: APP_REDIS_HOST
+              value: "redis"
+            - name: APP_RABBITMQ_HOST
+              value: "rabbitmq"
+            - name: APP_RABBITMQ_PORT
+              value: "5672"
+            - name: APP_RABBITMQ_USER
+              value: "rabbit"
+            - name: APP_RABBITMQ_PASS
+              value: "rabbit123"
+            - name: APP_RABBITMQ_EXCHANGE
+              value: "router"
+            - name: APP_PDO_DSN
+              value: "pgsql:host=grades-db;dbname=postgres;user=postgres;password=mypass"
+            - name: APP_RABBITMQ_NOTIFICATIONS_QUEUE
+              value: "notifications"
+  selector:
+    matchLabels:
+      app: grades
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: grades-db
+spec:
+  selector:
+    matchLabels:
+      app: grades-db
+  serviceName: grades-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grades-db
+    spec:
+      containers:
+        - name: grades-db
+          image: ms/grades-db:latest
+          imagePullPolicy: Never
+          volumeMounts:
+            - name: grades-db-volume
+              mountPath: /var/lib/postgresql/data
+          env:
+            - name: POSTGRES_PASSWORD
+              value: mypass
+            - name: PGDATA
+              value: /var/lib/postgresql/data/pgdata
+  volumeClaimTemplates:
+    - metadata:
+        name: grades-db-volume
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grades-db
+spec:
+  selector:
+    app: grades-db
+  type: NodePort
+  ports:
+    - port: 5432
+      targetPort: 5432

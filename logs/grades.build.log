@@ -1,0 +1,1335 @@
+Sending build context to Docker daemon  5.389MB
+Step 1/12 : FROM php:8-alpine
+ ---> 8104116fa32c
+Step 2/12 : WORKDIR /app
+ ---> Using cache
+ ---> 2a6f4b117a2c
+Step 3/12 : COPY . .
+ ---> 3e95b1e943d0
+Step 4/12 : RUN apk add --no-cache $PHPIZE_DEPS     && pecl install redis-5.3.4     && docker-php-ext-enable redis     && apk del --purge $PHPIZE_DEPS
+ ---> Running in 5b8a06c3b161
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/community/x86_64/APKINDEX.tar.gz
+(1/25) Installing m4 (1.4.18-r2)
+(2/25) Installing libbz2 (1.0.8-r1)
+(3/25) Installing perl (5.32.1-r0)
+(4/25) Installing autoconf (2.71-r0)
+(5/25) Installing dpkg (1.20.9-r0)
+(6/25) Installing pkgconf (1.7.4-r0)
+(7/25) Installing dpkg-dev (1.20.9-r0)
+(8/25) Installing libmagic (5.40-r1)
+(9/25) Installing file (5.40-r1)
+(10/25) Installing libgcc (10.3.1_git20210424-r2)
+(11/25) Installing libstdc++ (10.3.1_git20210424-r2)
+(12/25) Installing binutils (2.35.2-r2)
+(13/25) Installing libgomp (10.3.1_git20210424-r2)
+(14/25) Installing libatomic (10.3.1_git20210424-r2)
+(15/25) Installing libgphobos (10.3.1_git20210424-r2)
+(16/25) Installing gmp (6.2.1-r0)
+(17/25) Installing isl22 (0.22-r0)
+(18/25) Installing mpfr4 (4.1.0-r0)
+(19/25) Installing mpc1 (1.2.1-r0)
+(20/25) Installing gcc (10.3.1_git20210424-r2)
+(21/25) Installing musl-dev (1.2.2-r3)
+(22/25) Installing libc-dev (0.7.2-r3)
+(23/25) Installing g++ (10.3.1_git20210424-r2)
+(24/25) Installing make (4.3-r0)
+(25/25) Installing re2c (2.1.1-r0)
+Executing busybox-1.33.1-r2.trigger
+OK: 247 MiB in 57 packages
+downloading redis-5.3.4.tgz ...
+Starting to download redis-5.3.4.tgz (268,154 bytes)
+........................................................done: 268,154 bytes
+29 source files, building
+running: phpize
+Configuring for:
+PHP Api Version:         20200930
+Zend Module Api No:      20200930
+Zend Extension Api No:   420200930
+configure.ac:18: warning: $as_echo is obsolete; use AS_ECHO(["message"]) instead
+build/php.m4:2072: PHP_CONFIG_NICE is expanded from...
+configure.ac:18: the top level
+configure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: The macro `AC_TRY_LINK' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: tag name \"$tagname\" already exists
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: The macro `AC_LANG_CPLUSPLUS' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:262: AC_LANG_CPLUSPLUS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+enable igbinary serializer support? [no] : enable lzf compression support? [no] : enable zstd compression support? [no] : building in /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4
+running: /tmp/pear/temp/redis/configure --with-php-config=/usr/local/bin/php-config --enable-redis-igbinary=no --enable-redis-lzf=no --enable-redis-zstd=no
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether cc accepts -g... yes
+checking for cc option to enable C11 features... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking for system library directory... lib
+checking if compiler supports -R... no
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-musl
+checking host system type... x86_64-pc-linux-musl
+checking target system type... x86_64-pc-linux-musl
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20200930
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for gawk... no
+checking for nawk... no
+checking for awk... awk
+checking if awk is broken... no
+checking whether to enable redis support... yes, shared
+checking whether to enable sessions... yes
+checking whether to enable json serializer support... yes
+checking whether to enable igbinary serializer support... no
+checking whether to enable msgpack serializer support... no
+checking whether to enable lzf compression... no
+checking use system liblzf... no
+checking whether to enable Zstd compression... no
+checking use system libsztd... yes
+checking whether to enable lz4 compression... no
+checking use system liblz4... no
+checking for hash includes... /usr/local/include/php
+checking for json includes... /usr/local/include/php
+checking for redis json support... enabled
+checking for redis igbinary support... disabled
+checking for pkg-config... /usr/bin/pkg-config
+checking for git... no
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 98304
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: patching config.h.in
+configure: creating ./config.status
+config.status: creating config.h
+running: make
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis.c -o redis.lo
+mkdir .libs
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis.c  -fPIC -DPIC -o .libs/redis.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_commands.c -o redis_commands.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_commands.c  -fPIC -DPIC -o .libs/redis_commands.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/library.c -o library.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/library.c  -fPIC -DPIC -o .libs/library.o
+In file included from /tmp/pear/temp/redis/common.h:12,
+                 from /tmp/pear/temp/redis/php_redis.h:20,
+                 from /tmp/pear/temp/redis/library.c:1:
+In function 'smart_str_appendl_ex',
+    inlined from 'redis_hash_auth' at /tmp/pear/temp/redis/library.c:721:5,
+    inlined from 'append_auth_hash' at /tmp/pear/temp/redis/library.c:749:14:
+/usr/local/include/php/Zend/zend_smart_str.h:119:2: warning: writing 65 bytes into a region of size 1 [-Wstringop-overflow=]
+  119 |  memcpy(ZSTR_VAL(dest->s) + ZSTR_LEN(dest->s), str, len);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_session.c -o redis_session.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_session.c  -fPIC -DPIC -o .libs/redis_session.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_array.c -o redis_array.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_array.c  -fPIC -DPIC -o .libs/redis_array.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_array_impl.c -o redis_array_impl.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_array_impl.c  -fPIC -DPIC -o .libs/redis_array_impl.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_cluster.c -o redis_cluster.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_cluster.c  -fPIC -DPIC -o .libs/redis_cluster.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/cluster_library.c -o cluster_library.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/cluster_library.c  -fPIC -DPIC -o .libs/cluster_library.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_sentinel.c -o redis_sentinel.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_sentinel.c  -fPIC -DPIC -o .libs/redis_sentinel.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/sentinel_library.c -o sentinel_library.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/sentinel_library.c  -fPIC -DPIC -o .libs/sentinel_library.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=link cc -shared -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -o redis.la -export-dynamic -avoid-version -prefer-pic -module -rpath /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/modules  redis.lo redis_commands.lo library.lo redis_session.lo redis_array.lo redis_array_impl.lo redis_cluster.lo cluster_library.lo redis_sentinel.lo sentinel_library.lo
+cc -shared  .libs/redis.o .libs/redis_commands.o .libs/library.o .libs/redis_session.o .libs/redis_array.o .libs/redis_array_impl.o .libs/redis_cluster.o .libs/cluster_library.o .libs/redis_sentinel.o .libs/sentinel_library.o   -Wl,-soname -Wl,redis.so -o .libs/redis.so
+creating redis.la
+(cd .libs && rm -f redis.la && ln -s ../redis.la redis.la)
+/bin/sh /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/libtool --mode=install cp ./redis.la /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/modules
+cp ./.libs/redis.so /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/modules/redis.so
+cp ./.libs/redis.lai /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/modules/redis.la
+PATH="$PATH:/sbin" ldconfig -n /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /tmp/pear/temp/pear-build-defaultuserMaomPa/redis-5.3.4/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+running: make INSTALL_ROOT="/tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4" install
+Installing shared extensions:     /tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4/usr/local/lib/php/extensions/no-debug-non-zts-20200930/
+running: find "/tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4" | xargs ls -dils
+ 925183      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:26 /tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4
+ 925221      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:26 /tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4/usr
+ 925222      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:26 /tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4/usr/local
+ 925223      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:26 /tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4/usr/local/lib
+ 925224      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:26 /tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4/usr/local/lib/php
+ 925225      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:26 /tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4/usr/local/lib/php/extensions
+ 925226      4 drwxr-xr-x    2 root     root          4096 Jul 23 19:26 /tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4/usr/local/lib/php/extensions/no-debug-non-zts-20200930
+ 925220   3372 -rwxr-xr-x    1 root     root       3450976 Jul 23 19:26 /tmp/pear/temp/pear-build-defaultuserMaomPa/install-redis-5.3.4/usr/local/lib/php/extensions/no-debug-non-zts-20200930/redis.so
+
+Build process completed successfully
+Installing '/usr/local/lib/php/extensions/no-debug-non-zts-20200930/redis.so'
+install ok: channel://pecl.php.net/redis-5.3.4
+configuration option "php_ini" is not set to php.ini location
+You should add "extension=redis.so" to php.ini
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing .docker-php-ext-enable-deps (20210723.192613)
+OK: 247 MiB in 58 packages
+[91mWARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/main: No such file or directory
+WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/community: No such file or directory
+[0m(1/1) Purging .docker-php-ext-enable-deps (20210723.192613)
+OK: 247 MiB in 57 packages
+[91mWARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/main: No such file or directory
+WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/community: No such file or directory
+[0m(1/25) Purging autoconf (2.71-r0)
+(2/25) Purging m4 (1.4.18-r2)
+(3/25) Purging dpkg (1.20.9-r0)
+(4/25) Purging dpkg-dev (1.20.9-r0)
+(5/25) Purging perl (5.32.1-r0)
+(6/25) Purging file (5.40-r1)
+(7/25) Purging g++ (10.3.1_git20210424-r2)
+(8/25) Purging gcc (10.3.1_git20210424-r2)
+(9/25) Purging binutils (2.35.2-r2)
+(10/25) Purging libatomic (10.3.1_git20210424-r2)
+(11/25) Purging libgomp (10.3.1_git20210424-r2)
+(12/25) Purging libgphobos (10.3.1_git20210424-r2)
+(13/25) Purging libc-dev (0.7.2-r3)
+(14/25) Purging musl-dev (1.2.2-r3)
+(15/25) Purging make (4.3-r0)
+(16/25) Purging re2c (2.1.1-r0)
+(17/25) Purging libbz2 (1.0.8-r1)
+(18/25) Purging pkgconf (1.7.4-r0)
+(19/25) Purging libmagic (5.40-r1)
+(20/25) Purging libstdc++ (10.3.1_git20210424-r2)
+(21/25) Purging libgcc (10.3.1_git20210424-r2)
+(22/25) Purging mpc1 (1.2.1-r0)
+(23/25) Purging mpfr4 (4.1.0-r0)
+(24/25) Purging isl22 (0.22-r0)
+(25/25) Purging gmp (6.2.1-r0)
+Executing busybox-1.33.1-r2.trigger
+OK: 13 MiB in 32 packages
+Removing intermediate container 5b8a06c3b161
+ ---> 3297a0344733
+Step 5/12 : RUN apk add --no-cache postgresql-dev     && docker-php-ext-install pdo pdo_pgsql
+ ---> Running in 9cd6d7c81092
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/community/x86_64/APKINDEX.tar.gz
+(1/18) Installing libffi (3.3-r2)
+(2/18) Installing libgcc (10.3.1_git20210424-r2)
+(3/18) Installing libstdc++ (10.3.1_git20210424-r2)
+(4/18) Installing llvm11-libs (11.1.0-r2)
+(5/18) Installing clang-libs (11.1.0-r1)
+(6/18) Installing clang (11.1.0-r1)
+(7/18) Installing icu-libs (67.1-r2)
+(8/18) Installing icu (67.1-r2)
+(9/18) Installing pkgconf (1.7.4-r0)
+(10/18) Installing icu-dev (67.1-r2)
+(11/18) Installing llvm11 (11.1.0-r2)
+(12/18) Installing openssl-dev (1.1.1k-r0)
+(13/18) Installing gdbm (1.19-r0)
+(14/18) Installing libsasl (2.1.27-r12)
+(15/18) Installing libldap (2.4.58-r0)
+(16/18) Installing libpq (13.3-r0)
+(17/18) Installing postgresql-libs (13.3-r0)
+(18/18) Installing postgresql-dev (13.3-r0)
+Executing busybox-1.33.1-r2.trigger
+OK: 318 MiB in 50 packages
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/community/x86_64/APKINDEX.tar.gz
+(1/23) Installing m4 (1.4.18-r2)
+(2/23) Installing libbz2 (1.0.8-r1)
+(3/23) Installing perl (5.32.1-r0)
+(4/23) Installing autoconf (2.71-r0)
+(5/23) Installing dpkg-dev (1.20.9-r0)
+(6/23) Installing dpkg (1.20.9-r0)
+(7/23) Installing libmagic (5.40-r1)
+(8/23) Installing file (5.40-r1)
+(9/23) Installing binutils (2.35.2-r2)
+(10/23) Installing libgomp (10.3.1_git20210424-r2)
+(11/23) Installing libatomic (10.3.1_git20210424-r2)
+(12/23) Installing libgphobos (10.3.1_git20210424-r2)
+(13/23) Installing gmp (6.2.1-r0)
+(14/23) Installing isl22 (0.22-r0)
+(15/23) Installing mpfr4 (4.1.0-r0)
+(16/23) Installing mpc1 (1.2.1-r0)
+(17/23) Installing gcc (10.3.1_git20210424-r2)
+(18/23) Installing musl-dev (1.2.2-r3)
+(19/23) Installing libc-dev (0.7.2-r3)
+(20/23) Installing g++ (10.3.1_git20210424-r2)
+(21/23) Installing make (4.3-r0)
+(22/23) Installing re2c (2.1.1-r0)
+(23/23) Installing .phpize-deps (20210723.192620)
+Executing busybox-1.33.1-r2.trigger
+OK: 549 MiB in 73 packages
+Configuring for:
+PHP Api Version:         20200930
+Zend Module Api No:      20200930
+Zend Extension Api No:   420200930
+[91mconfigure.ac:18: warning: $as_echo is obsolete; use AS_ECHO(["message"]) instead
+build/php.m4:2072: PHP_CONFIG_NICE is expanded from...
+configure.ac:18: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_TRY_LINK' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: tag name \"$tagname\" already exists
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_LANG_CPLUSPLUS' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:262: AC_LANG_CPLUSPLUS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0mchecking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether cc accepts -g... yes
+checking for cc option to enable C11 features... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking for system library directory... lib
+checking if compiler supports -R... no
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-musl
+checking host system type... x86_64-pc-linux-musl
+checking target system type... x86_64-pc-linux-musl
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20200930
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for gawk... no
+checking for nawk... no
+checking for awk... awk
+checking if awk is broken... no
+checking whether to enable PDO support... yes, shared
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 98304
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: patching config.h.in
+configure: creating ./config.status
+config.status: creating config.h
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64    -c /usr/src/php/ext/pdo/pdo.c -o pdo.lo 
+mkdir .libs
+ cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo.c  -fPIC -DPIC -o .libs/pdo.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64    -c /usr/src/php/ext/pdo/pdo_dbh.c -o pdo_dbh.lo 
+ cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo_dbh.c  -fPIC -DPIC -o .libs/pdo_dbh.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64    -c /usr/src/php/ext/pdo/pdo_stmt.c -o pdo_stmt.lo 
+ cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo_stmt.c  -fPIC -DPIC -o .libs/pdo_stmt.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64    -c /usr/src/php/ext/pdo/pdo_sql_parser.c -o pdo_sql_parser.lo 
+ cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo_sql_parser.c  -fPIC -DPIC -o .libs/pdo_sql_parser.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=compile cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64    -c /usr/src/php/ext/pdo/pdo_sqlstate.c -o pdo_sqlstate.lo 
+ cc -I. -I/usr/src/php/ext/pdo -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -c /usr/src/php/ext/pdo/pdo_sqlstate.c  -fPIC -DPIC -o .libs/pdo_sqlstate.o
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=link cc -shared -I/usr/src/php/ext/pdo/include -I/usr/src/php/ext/pdo/main -I/usr/src/php/ext/pdo -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -Wl,-O1 -pie  -o pdo.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/src/php/ext/pdo/modules  pdo.lo pdo_dbh.lo pdo_stmt.lo pdo_sql_parser.lo pdo_sqlstate.lo 
+cc -shared  .libs/pdo.o .libs/pdo_dbh.o .libs/pdo_stmt.o .libs/pdo_sql_parser.o .libs/pdo_sqlstate.o   -Wl,-O1 -Wl,-soname -Wl,pdo.so -o .libs/pdo.so
+creating pdo.la
+(cd .libs && rm -f pdo.la && ln -s ../pdo.la pdo.la)
+/bin/sh /usr/src/php/ext/pdo/libtool --mode=install cp ./pdo.la /usr/src/php/ext/pdo/modules
+cp ./.libs/pdo.so /usr/src/php/ext/pdo/modules/pdo.so
+cp ./.libs/pdo.lai /usr/src/php/ext/pdo/modules/pdo.la
+PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/pdo/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/src/php/ext/pdo/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20200930/
+Installing header files:          /usr/local/include/php/
+Installing PDO headers:           /usr/local/include/php/ext/pdo/
+[91m
+warning: pdo (pdo.so) is already loaded!
+
+[0mfind . -name \*.gcno -o -name \*.gcda | xargs rm -f
+find . -name \*.lo -o -name \*.o | xargs rm -f
+find . -name \*.la -o -name \*.a | xargs rm -f
+find . -name \*.so | xargs rm -f
+find . -name .libs -a -type d|xargs rm -rf
+rm -f libphp.la      modules/* libs/*
+rm -f ext/opcache/jit/zend_jit_x86.c
+Configuring for:
+PHP Api Version:         20200930
+Zend Module Api No:      20200930
+Zend Extension Api No:   420200930
+[91mconfigure.ac:18: warning: $as_echo is obsolete; use AS_ECHO(["message"]) instead
+build/php.m4:2072: PHP_CONFIG_NICE is expanded from...
+configure.ac:18: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_TRY_LINK' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: tag name \"$tagname\" already exists
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_LANG_CPLUSPLUS' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:262: AC_LANG_CPLUSPLUS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0mchecking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether cc accepts -g... yes
+checking for cc option to enable C11 features... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking for system library directory... lib
+checking if compiler supports -R... no
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-musl
+checking host system type... x86_64-pc-linux-musl
+checking target system type... x86_64-pc-linux-musl
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20200930
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for gawk... no
+checking for nawk... no
+checking for awk... awk
+checking if awk is broken... no
+checking for PostgreSQL support for PDO... yes, shared
+checking for pg_config... /usr/bin/pg_config
+checking for PQlibVersion in -lpq... yes
+checking for PDO includes... /usr/local/include/php/ext
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 98304
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: patching config.h.in
+configure: creating ./config.status
+config.status: creating config.h
+/bin/sh /usr/src/php/ext/pdo_pgsql/libtool --mode=compile cc -I. -I/usr/src/php/ext/pdo_pgsql -I/usr/src/php/ext/pdo_pgsql/include -I/usr/src/php/ext/pdo_pgsql/main -I/usr/src/php/ext/pdo_pgsql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -I/usr/local/include/php/ext -c /usr/src/php/ext/pdo_pgsql/pdo_pgsql.c -o pdo_pgsql.lo 
+mkdir .libs
+ cc -I. -I/usr/src/php/ext/pdo_pgsql -I/usr/src/php/ext/pdo_pgsql/include -I/usr/src/php/ext/pdo_pgsql/main -I/usr/src/php/ext/pdo_pgsql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I/usr/local/include/php/ext -c /usr/src/php/ext/pdo_pgsql/pdo_pgsql.c  -fPIC -DPIC -o .libs/pdo_pgsql.o
+/bin/sh /usr/src/php/ext/pdo_pgsql/libtool --mode=compile cc -I. -I/usr/src/php/ext/pdo_pgsql -I/usr/src/php/ext/pdo_pgsql/include -I/usr/src/php/ext/pdo_pgsql/main -I/usr/src/php/ext/pdo_pgsql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -I/usr/local/include/php/ext -c /usr/src/php/ext/pdo_pgsql/pgsql_driver.c -o pgsql_driver.lo 
+ cc -I. -I/usr/src/php/ext/pdo_pgsql -I/usr/src/php/ext/pdo_pgsql/include -I/usr/src/php/ext/pdo_pgsql/main -I/usr/src/php/ext/pdo_pgsql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I/usr/local/include/php/ext -c /usr/src/php/ext/pdo_pgsql/pgsql_driver.c  -fPIC -DPIC -o .libs/pgsql_driver.o
+/bin/sh /usr/src/php/ext/pdo_pgsql/libtool --mode=compile cc -I. -I/usr/src/php/ext/pdo_pgsql -I/usr/src/php/ext/pdo_pgsql/include -I/usr/src/php/ext/pdo_pgsql/main -I/usr/src/php/ext/pdo_pgsql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -I/usr/local/include/php/ext -c /usr/src/php/ext/pdo_pgsql/pgsql_statement.c -o pgsql_statement.lo 
+ cc -I. -I/usr/src/php/ext/pdo_pgsql -I/usr/src/php/ext/pdo_pgsql/include -I/usr/src/php/ext/pdo_pgsql/main -I/usr/src/php/ext/pdo_pgsql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -I/usr/local/include/php/ext -c /usr/src/php/ext/pdo_pgsql/pgsql_statement.c  -fPIC -DPIC -o .libs/pgsql_statement.o
+/bin/sh /usr/src/php/ext/pdo_pgsql/libtool --mode=link cc -shared -I/usr/src/php/ext/pdo_pgsql/include -I/usr/src/php/ext/pdo_pgsql/main -I/usr/src/php/ext/pdo_pgsql -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -Wl,-O1 -pie  -o pdo_pgsql.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/src/php/ext/pdo_pgsql/modules  pdo_pgsql.lo pgsql_driver.lo pgsql_statement.lo -lpq
+cc -shared  .libs/pdo_pgsql.o .libs/pgsql_driver.o .libs/pgsql_statement.o  -lpq  -Wl,-O1 -Wl,-soname -Wl,pdo_pgsql.so -o .libs/pdo_pgsql.so
+creating pdo_pgsql.la
+(cd .libs && rm -f pdo_pgsql.la && ln -s ../pdo_pgsql.la pdo_pgsql.la)
+/bin/sh /usr/src/php/ext/pdo_pgsql/libtool --mode=install cp ./pdo_pgsql.la /usr/src/php/ext/pdo_pgsql/modules
+cp ./.libs/pdo_pgsql.so /usr/src/php/ext/pdo_pgsql/modules/pdo_pgsql.so
+cp ./.libs/pdo_pgsql.lai /usr/src/php/ext/pdo_pgsql/modules/pdo_pgsql.la
+PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/pdo_pgsql/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/src/php/ext/pdo_pgsql/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20200930/
+find . -name \*.gcno -o -name \*.gcda | xargs rm -f
+find . -name \*.lo -o -name \*.o | xargs rm -f
+find . -name \*.la -o -name \*.a | xargs rm -f
+find . -name \*.so | xargs rm -f
+find . -name .libs -a -type d|xargs rm -rf
+rm -f libphp.la      modules/* libs/*
+rm -f ext/opcache/jit/zend_jit_x86.c
+(1/23) Purging .phpize-deps (20210723.192620)
+(2/23) Purging autoconf (2.71-r0)
+[91mWARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/main: No such file or directory
+WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/community: No such file or directory
+[0m(3/23) Purging m4 (1.4.18-r2)
+(4/23) Purging dpkg-dev (1.20.9-r0)
+(5/23) Purging perl (5.32.1-r0)
+(6/23) Purging dpkg (1.20.9-r0)
+(7/23) Purging file (5.40-r1)
+(8/23) Purging g++ (10.3.1_git20210424-r2)
+(9/23) Purging gcc (10.3.1_git20210424-r2)
+(10/23) Purging binutils (2.35.2-r2)
+(11/23) Purging libatomic (10.3.1_git20210424-r2)
+(12/23) Purging libgomp (10.3.1_git20210424-r2)
+(13/23) Purging libgphobos (10.3.1_git20210424-r2)
+(14/23) Purging libc-dev (0.7.2-r3)
+(15/23) Purging musl-dev (1.2.2-r3)
+(16/23) Purging make (4.3-r0)
+(17/23) Purging re2c (2.1.1-r0)
+(18/23) Purging libbz2 (1.0.8-r1)
+(19/23) Purging libmagic (5.40-r1)
+(20/23) Purging mpc1 (1.2.1-r0)
+(21/23) Purging mpfr4 (4.1.0-r0)
+(22/23) Purging isl22 (0.22-r0)
+(23/23) Purging gmp (6.2.1-r0)
+Executing busybox-1.33.1-r2.trigger
+OK: 318 MiB in 50 packages
+Removing intermediate container 9cd6d7c81092
+ ---> 72f7b6692f5f
+Step 6/12 : RUN docker-php-ext-install sockets
+ ---> Running in eace6efb56ca
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/community/x86_64/APKINDEX.tar.gz
+(1/23) Installing m4 (1.4.18-r2)
+(2/23) Installing libbz2 (1.0.8-r1)
+(3/23) Installing perl (5.32.1-r0)
+(4/23) Installing autoconf (2.71-r0)
+(5/23) Installing dpkg-dev (1.20.9-r0)
+(6/23) Installing dpkg (1.20.9-r0)
+(7/23) Installing libmagic (5.40-r1)
+(8/23) Installing file (5.40-r1)
+(9/23) Installing binutils (2.35.2-r2)
+(10/23) Installing libgomp (10.3.1_git20210424-r2)
+(11/23) Installing libatomic (10.3.1_git20210424-r2)
+(12/23) Installing libgphobos (10.3.1_git20210424-r2)
+(13/23) Installing gmp (6.2.1-r0)
+(14/23) Installing isl22 (0.22-r0)
+(15/23) Installing mpfr4 (4.1.0-r0)
+(16/23) Installing mpc1 (1.2.1-r0)
+(17/23) Installing gcc (10.3.1_git20210424-r2)
+(18/23) Installing musl-dev (1.2.2-r3)
+(19/23) Installing libc-dev (0.7.2-r3)
+(20/23) Installing g++ (10.3.1_git20210424-r2)
+(21/23) Installing make (4.3-r0)
+(22/23) Installing re2c (2.1.1-r0)
+(23/23) Installing .phpize-deps (20210723.192638)
+Executing busybox-1.33.1-r2.trigger
+OK: 549 MiB in 73 packages
+Configuring for:
+PHP Api Version:         20200930
+Zend Module Api No:      20200930
+Zend Extension Api No:   420200930
+[91mconfigure.ac:18: warning: $as_echo is obsolete; use AS_ECHO(["message"]) instead
+build/php.m4:2072: PHP_CONFIG_NICE is expanded from...
+configure.ac:18: the top level
+configure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_TRY_LINK' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: tag name \"$tagname\" already exists
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: The macro `AC_LANG_CPLUSPLUS' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:262: AC_LANG_CPLUSPLUS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0m[91mconfigure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+[0mchecking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether cc accepts -g... yes
+checking for cc option to enable C11 features... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking for system library directory... lib
+checking if compiler supports -R... no
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-musl
+checking host system type... x86_64-pc-linux-musl
+checking target system type... x86_64-pc-linux-musl
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20200930
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for gawk... no
+checking for nawk... no
+checking for awk... awk
+checking if awk is broken... no
+checking whether to enable sockets support... yes, shared
+checking for hstrerror... yes
+checking for if_nametoindex... yes
+checking for if_indextoname... yes
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for netinet/tcp.h... yes
+checking for sys/un.h... yes
+checking for sys/sockio.h... no
+checking for field ss_family in struct sockaddr_storage... yes
+checking if getaddrinfo supports AI_V4MAPPED... yes
+checking if getaddrinfo supports AI_ALL... yes
+checking if getaddrinfo supports AI_IDN... no
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 98304
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: patching config.h.in
+configure: creating ./config.status
+config.status: creating config.h
+/bin/sh /usr/src/php/ext/sockets/libtool --mode=compile cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/sockets.c -o sockets.lo 
+mkdir .libs
+ cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/sockets.c  -fPIC -DPIC -o .libs/sockets.o
+/bin/sh /usr/src/php/ext/sockets/libtool --mode=compile cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/multicast.c -o multicast.lo 
+ cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/multicast.c  -fPIC -DPIC -o .libs/multicast.o
+/bin/sh /usr/src/php/ext/sockets/libtool --mode=compile cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/conversions.c -o conversions.lo 
+ cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/conversions.c  -fPIC -DPIC -o .libs/conversions.o
+/bin/sh /usr/src/php/ext/sockets/libtool --mode=compile cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/sockaddr_conv.c -o sockaddr_conv.lo 
+ cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/sockaddr_conv.c  -fPIC -DPIC -o .libs/sockaddr_conv.o
+/bin/sh /usr/src/php/ext/sockets/libtool --mode=compile cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64   -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/sendrecvmsg.c -o sendrecvmsg.lo 
+ cc -I. -I/usr/src/php/ext/sockets -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1 -c /usr/src/php/ext/sockets/sendrecvmsg.c  -fPIC -DPIC -o .libs/sendrecvmsg.o
+/bin/sh /usr/src/php/ext/sockets/libtool --mode=link cc -shared -I/usr/src/php/ext/sockets/include -I/usr/src/php/ext/sockets/main -I/usr/src/php/ext/sockets -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CONFIG_H  -fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64  -Wl,-O1 -pie  -o sockets.la -export-dynamic -avoid-version -prefer-pic -module -rpath /usr/src/php/ext/sockets/modules  sockets.lo multicast.lo conversions.lo sockaddr_conv.lo sendrecvmsg.lo 
+cc -shared  .libs/sockets.o .libs/multicast.o .libs/conversions.o .libs/sockaddr_conv.o .libs/sendrecvmsg.o   -Wl,-O1 -Wl,-soname -Wl,sockets.so -o .libs/sockets.so
+creating sockets.la
+(cd .libs && rm -f sockets.la && ln -s ../sockets.la sockets.la)
+/bin/sh /usr/src/php/ext/sockets/libtool --mode=install cp ./sockets.la /usr/src/php/ext/sockets/modules
+cp ./.libs/sockets.so /usr/src/php/ext/sockets/modules/sockets.so
+cp ./.libs/sockets.lai /usr/src/php/ext/sockets/modules/sockets.la
+PATH="$PATH:/sbin" ldconfig -n /usr/src/php/ext/sockets/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /usr/src/php/ext/sockets/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+Installing shared extensions:     /usr/local/lib/php/extensions/no-debug-non-zts-20200930/
+Installing header files:          /usr/local/include/php/
+find . -name \*.gcno -o -name \*.gcda | xargs rm -f
+find . -name \*.lo -o -name \*.o | xargs rm -f
+find . -name \*.la -o -name \*.a | xargs rm -f
+find . -name \*.so | xargs rm -f
+find . -name .libs -a -type d|xargs rm -rf
+rm -f libphp.la      modules/* libs/*
+rm -f ext/opcache/jit/zend_jit_x86.c
+[91mWARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/main: No such file or directory
+WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/community: No such file or directory
+[0m(1/23) Purging .phpize-deps (20210723.192638)
+(2/23) Purging autoconf (2.71-r0)
+(3/23) Purging m4 (1.4.18-r2)
+(4/23) Purging dpkg-dev (1.20.9-r0)
+(5/23) Purging perl (5.32.1-r0)
+(6/23) Purging dpkg (1.20.9-r0)
+(7/23) Purging file (5.40-r1)
+(8/23) Purging g++ (10.3.1_git20210424-r2)
+(9/23) Purging gcc (10.3.1_git20210424-r2)
+(10/23) Purging binutils (2.35.2-r2)
+(11/23) Purging libatomic (10.3.1_git20210424-r2)
+(12/23) Purging libgomp (10.3.1_git20210424-r2)
+(13/23) Purging libgphobos (10.3.1_git20210424-r2)
+(14/23) Purging libc-dev (0.7.2-r3)
+(15/23) Purging musl-dev (1.2.2-r3)
+(16/23) Purging make (4.3-r0)
+(17/23) Purging re2c (2.1.1-r0)
+(18/23) Purging libbz2 (1.0.8-r1)
+(19/23) Purging libmagic (5.40-r1)
+(20/23) Purging mpc1 (1.2.1-r0)
+(21/23) Purging mpfr4 (4.1.0-r0)
+(22/23) Purging isl22 (0.22-r0)
+(23/23) Purging gmp (6.2.1-r0)
+Executing busybox-1.33.1-r2.trigger
+OK: 318 MiB in 50 packages
+Removing intermediate container eace6efb56ca
+ ---> a390fda81c70
+Step 7/12 : RUN mkdir -p /srv/framework
+ ---> Running in ff4230bf5cde
+Removing intermediate container ff4230bf5cde
+ ---> 1e27fa87f5e8
+Step 8/12 : COPY --from=ms/libs /app /srv/framework
+ ---> 6beebb9a020c
+Step 9/12 : COPY --from=composer /usr/bin/composer /usr/bin/composer
+ ---> d85525e991bc
+Step 10/12 : RUN composer install --no-dev
+ ---> Running in 78f8d1c7328a
+[91mInstalling dependencies from lock file
+[0m[91mVerifying lock file contents can be installed on current platform.
+[0m[91mNothing to install, update or remove
+[0m[91mGenerating autoload files
+[0m[91m7 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+[0mRemoving intermediate container 78f8d1c7328a
+ ---> 7e91c9d3c8a5
+Step 11/12 : EXPOSE 80
+ ---> Running in 57c6c8783ce7
+Removing intermediate container 57c6c8783ce7
+ ---> 7da3fefab7c4
+Step 12/12 : CMD ["composer", "start"]
+ ---> Running in 6d5d91804599
+Removing intermediate container 6d5d91804599
+ ---> d48c3a97d5cf
+Successfully built d48c3a97d5cf
+Successfully tagged ms/grades:latest

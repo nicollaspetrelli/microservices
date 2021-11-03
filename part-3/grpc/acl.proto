@@ -1,0 +1,100 @@
+// https://developers.google.com/protocol-buffers/docs/proto3
+
+syntax = "proto3";
+
+/**
+ * @link https://github.com/googleapis/googleapis/blob/master/google/rpc/status.proto
+ */
+import "google/rpc/status.proto";
+
+/**
+ * The package you want to use for your generated Java/Kotlin classes. If no
+ * explicit java_package option is given in the .proto file, then by default the
+ * proto package (specified using the "package" keyword in the .proto file) will
+ * be used. However, proto packages generally do not make good Java packages
+ * since proto packages are not expected to start with reverse domain names. If
+ * not generating Java or Kotlin code, this option has no effect.
+ */
+option java_package = "com.viniciuscampitelli.workshop.acl";
+
+/**
+ * If false, only a single .java file will be generated for this .proto file,
+ * and all the Java classes/enums/etc. generated for the top-level messages,
+ * services, and enumerations will be nested inside of an outer class (see
+ * java_outer_classname). If true, separate .java files will be generated for
+ * each of the Java classes/enums/etc. generated for the top-level messages,
+ * services, and enumerations, and the wrapper Java class generated for this
+ * .proto file won't contain any nested classes/enums/etc. This is a Boolean
+ * option which defaults to false. If not generating Java code, this option has
+ * no effect.
+ */
+option java_multiple_files = false;
+
+/**
+ * The class name (and hence the file name) for the wrapper Java class you want
+ * to generate. If no explicit java_outer_classname is specified in the .proto
+ * file, the class name will be constructed by converting the .proto file name
+ * to camel-case (so foo_bar.proto becomes FooBar.java). If the
+ * java_multiple_files option is disabled, then all other classes/enums/etc.
+ * generated for the .proto file will be generated within this outer wrapper
+ * Java class as nested classes/enums/etc. If not generating Java code, this
+ * option has no effect.
+ */
+option java_outer_classname = "ACLProto";
+
+/**
+ * Sets the Objective-C class prefix which is prepended to all Objective-C
+ * generated classes and enums from this .proto. There is no default. You should
+ * use prefixes that are between 3-5 uppercase characters as recommended by
+ * Apple. Note that all 2 letter prefixes are reserved by Apple.
+ */
+option objc_class_prefix = "ACL";
+
+/**
+ * Can be set to SPEED, CODE_SIZE, or LITE_RUNTIME. This affects the C++ and
+ * Java code generators (and possibly third-party generators) in the following
+ * ways: SPEED, CODE_SIZE or LITE_RUNTIME
+ */
+option optimize_for = SPEED;
+
+package acl;
+
+service Greeter {
+  rpc SayHello(HelloRequest) returns (HelloReply);
+}
+
+message HelloRequest {
+  string name = 1;
+}
+message HelloReply {
+  string message = 1;
+}
+
+service Roles {
+  rpc GetRolesByUser(UserRequest) returns (GetRolesByUserReply);
+  rpc GetResourcesStreamByRole(RoleRequest) returns (stream StreamingResourceReply);
+  rpc GetResourcesStreamByRoleStream(stream RoleRequest) returns (stream StreamingResourceReply);
+}
+
+message UserRequest {
+  string username = 1;
+}
+message GetRolesByUserReply {
+  string username = 1;
+  repeated string roles = 2;
+}
+
+message RoleRequest {
+  string role = 1;
+}
+message StreamingResourceReply {
+  message ResourceReply {
+    string resource = 1;
+    string role = 2;
+    optional string record_id = 3;
+  }
+  oneof type {
+    ResourceReply response = 1;
+    google.rpc.Status error = 2;
+  }
+}

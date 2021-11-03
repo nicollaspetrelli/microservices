@@ -1,0 +1,922 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Parte 2 - Workshop de Microsserviços</title>
+
+        <link rel="stylesheet" href="../reveal.js/dist/reset.css">
+        <link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/styles/a11y-dark.min.css">
+        <link rel="stylesheet" href="../reveal.js/dist/theme/white.css">
+        <link rel="stylesheet" href="../css/white-v2.css">
+        <link rel="stylesheet" href="../css/app.css">
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>Microsserviços</h1>
+                    <h2>Parte 2</h2>
+                </section>
+
+                <section> <!-- API Gateway -->
+                    <section>
+                        <h2>API Gateway</h2>
+                        <blockquote class="small">
+                            (...) lida com requisições em uma dessas duas maneiras: algumas são simplesmente enviadas
+                            por proxy para o serviço adequado e outras são distribuídas para múltiplos serviços.
+                        </blockquote>
+                        <a href="https://microservices.io/patterns/apigateway.html"
+                           class="smallest" target="_blank" rel="noopener">microservices.io</a>
+                    </section>
+                    <section>
+                        <figure>
+                            <img src="https://bits.theorem.co/images/posts/2015-08-24-microservices-architecture.png"
+                                 alt="API Gateway">
+                            <figcaption>API Gateway</figcaption>
+                        </figure>
+                    </section>
+                </section> <!-- API Gateway -->
+
+                <section> <!-- Service Mesh -->
+                    <section data-auto-animate>
+                        <h2>Service Mesh</h2>
+                        <blockquote class="small">
+                            é uma camada dedicada de infraestrutura para facilitar a comunicação entre serviços usando
+                            um proxy
+                        </blockquote>
+                        <a href="https://en.wikipedia.org/wiki/Service_mesh"
+                           class="smallest" target="_blank" rel="noopener">Wikipedia</a>
+                    </section>
+                    <section data-auto-animate>
+                        <h2>Service Mesh</h2>
+                        <blockquote class="small">
+                            as soluções ... propõe uma gestão mais eficaz das comunicações entre
+                            serviços, maior controle operacional e também o fornecimento de informações comportamentais
+                        </blockquote>
+                        <a href="https://pt.wikipedia.org/wiki/Malha_de_servi%C3%A7os"
+                           class="smallest" target="_blank" rel="noopener">Wikipedia</a>
+                    </section>
+                    <section>
+                        <h4 class="subtitle">Service Mesh</h4>
+                        <h3>Funcionalidades</h3>
+                        <ul>
+                            <li>Encriptação;</li>
+                            <li>Load balancing;</li>
+                            <li>Observabilidade;</li>
+                            <li>Rastreabilidade;</li>
+                            <li>Circuit breaker;</li>
+                            <li>Autenticação e autorização.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <figure>
+                            <img src="https://lh6.googleusercontent.com/WP-i9kDDwwcI0e9eBU4rieSfxcSKXOrBO46FxWyYCfVkXe_7uiYLYH1Qf3hOTnNDfenKOHQ6CeOeERBV6klc6Yvv61BTE_PNpKzw2FfDv0Kh_uwzeJVkhHpAW9gaKbXUTremOVNV"
+                                 alt="Service Mesh">
+                            <figcaption>Service Mesh</figcaption>
+                        </figure>
+                    </section>
+                </section> <!-- Service Mesh -->
+
+                <section> <!-- Service Mesh -->
+                    <section>
+                        <h4 class="subtitle">Service Mesh</h4>
+                        <h3>Circuit Breaker</h3>
+                        <blockquote class="small">
+                            design pattern para criar microsserviços resilientes limitando o impacto de falhas e
+                            latências nos serviços
+                        </blockquote>
+                        <blockquote class="small">
+                            um de seus objetivos básicos é lidar com falhas de forma graciosa para que não ocorram o
+                            cascateamento para outros serviços
+                        </blockquote>
+                        <blockquote class="small">
+                            em um ambiente de microsserviços, falhar rapidamente é crítico
+                        </blockquote>
+                        <a href="https://dzone.com/articles/resilient-microservices-with-istio-circuit-breaker"
+                           class="smallest" target="_blank" rel="noopener">dzone.com</a>
+                    </section>
+                    <section>
+                        <figure>
+                            <img src="https://banzaicloud.com/img/blog/istio/circuit-breaking.png">
+                            <figcaption>Circuit Breaker</figcaption>
+                        </figure>
+                    </section>
+                </section> <!-- Service Mesh -->
+
+                <section> <!-- Chaos Engineering -->
+                    <section>
+                        <h2>Chaos Engineering</h2>
+                        <div>
+                            <blockquote class="small">
+                                processo de testar um sistema para garantir que ele pode resistir a interrupções
+                                inesperadas
+                            </blockquote>
+                        </div>
+                        <p>
+                            <a href="https://searchitoperations.techtarget.com/definition/chaos-engineering"
+                               class="smallest" target="_blank" rel="noopener">Tech Target</a>
+                        </p>
+                    </section>
+
+                    <section>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Objetivo</h3>
+                        <div>
+                            <em>
+                                Identificar fraquezas em um sistema através de experimentos controlados, que introduzem
+                                comportamentos randômicos e imprevisíveis
+                            </em>
+                        </div>
+                        <p>
+                            <a href="https://searchitoperations.techtarget.com/definition/chaos-engineering"
+                               class="smallest" target="_blank" rel="noopener">Tech Target</a>
+                        </p>
+                    </section>
+
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Conceito</h3>
+                        <div>
+                            <em>
+                                Quebrar um sistema com a proposta de coletar informações que vão ajudar a melhorar a
+                                resiliência do sistema.<br>
+                                É uma abordagem de teste para software e garantia de qualidade, sendo adequado a
+                                sistemas distribuídos e processos modernos.
+                            </em>
+                        </div>
+                        <p>
+                            <a href="https://searchitoperations.techtarget.com/definition/chaos-engineering"
+                               class="smallest" target="_blank" rel="noopener">Tech Target</a>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Conceito</h3>
+                        <div>
+                            <em>
+                                Quanto maior e mais complexo o sistema, mais imprevisível e caótico será seu
+                                comportamento
+                            </em>
+                        </div>
+                        <p>
+                            <a href="https://searchitoperations.techtarget.com/definition/chaos-engineering"
+                               class="smallest" target="_blank" rel="noopener">Tech Target</a>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Conceito</h3>
+                        <div>
+                            <em>
+                                Estes experimentos geram intencionalmente condições turbulentas em um sistema
+                                distribuído
+                                para testá-lo e encontrar suas fraquezas
+                            </em>
+                        </div>
+                        <p>
+                            <a href="https://searchitoperations.techtarget.com/definition/chaos-engineering"
+                               class="smallest" target="_blank" rel="noopener">Tech Target</a>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Conceito</h3>
+                        <blockquote class="small">
+                            <p>&#8220;The best way to avoid failure is to fail constantly.&#8221;</p>
+                            <cite>- Netflix</cite>
+                        </blockquote>
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Resultados possíveis</h3>
+                        <p class="fw-400 fragment" data-fragment-index="0">Pontos cegos</p>
+                        <p class="fragment" data-fragment-index="0">
+                            Locais onde o software de monitoramento não pode coletar dados adequados
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Resultados possíveis</h3>
+                        <p class="fw-400">Bugs escondidos</p>
+                        <p>
+                            Falhas e outros problemas que podem causar mal funcionamento do software
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Resultados possíveis</h3>
+                        <p class="fw-400">Gargalos de performance</p>
+                        <p>
+                            Situações nas quais eficiência e performance poderiam ser melhoradas
+                        </p>
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Processo</h3>
+                        <p class="fw-400">Estabeleça a base de referência</p>
+                        <div>
+                            Os testadores devem identificar como o sistema deve operar sob condições ótimas e
+                            especificar o que constitui um estado normal de trabalho
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Processo</h3>
+                        <p class="fw-400">Crie uma hipótese</p>
+                        <div>
+                            Considere uma ou mais potenciais fraquezas e formule uma hipótese sobre os efeitos dessas
+                            fraquezas
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Processo</h3>
+                        <p class="fw-400">Teste</p>
+                        <div>
+                            Conduza experimentos para medir as consequências de um pico &mdash; os testes podem revelar
+                            erros em algum processo crítico ou uma inesperada relação de causa-e-efeito
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Processo</h3>
+                        <p class="fw-400">Avalie</p>
+                        <div>
+                            Meça e avalie como a hipótese se sustenta e determine quais os problemas a corrigir
+                        </div>
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Melhores Práticas</h3>
+                        <p class="fw-400">Entenda o comportamento usual do sistema</p>
+                        Having a solid understanding of the system when it is healthy will help in diagnosing problems.
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Melhores Práticas</h3>
+                        <p class="fw-400">Simule cenários realistas</p>
+                        Focus on injecting likely failures and bugs. For example, if latency has been a problem in the
+                        past, inject bugs that induce latency.
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Melhores Práticas</h3>
+                        <p class="fw-400">Teste usando condições do mundo real</p>
+                        This yields the most accurate results. Chaos engineering is often performed in production
+                        environments, especially when it is too cumbersome or expensive to duplicate a large,
+                        distributed system for testing purposes.
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Melhores Práticas</h3>
+                        <p class="fw-400">Minimize o impacto</p>
+                        Chaos engineering can be highly disruptive. Success demands coordination among IT staff,
+                        developers and business units. Experiments in production environments are rarely run at peak
+                        times, and ideally, nobody using the system will be able to tell that chaos experiments are
+                        taking place. Redundancy should be in place to ensure that services remain available if
+                        experiments do cause issues.
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Ferramentas</h3>
+                        <p class="fw-400">
+                            <span class="fragment strike" data-fragment-index="0">Simian Army</span>
+                            <span class="fw-300 small red fragment" data-fragment-index="0">ARQUIVADO</span>
+                        </p>
+                        <div>
+                            <em>
+                                Netflix was a notable pioneer of chaos engineering and was among the first to use it in
+                                production systems. Netflix designed and open sourced chaos test automation platforms
+                                collectively dubbed the Simian Army.
+                            </em>
+                        </div>
+                        <a href="https://github.com/Netflix/SimianArmy"
+                           class="smaller" target="_blank" rel="noopener">github.com/Netflix/SimianArmy</a>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Ferramentas</h3>
+                        <div>
+                            <p class="fw-400">Chaos Monkey</p>
+                            Desativa instâncias aleatoriamente causando falhas no sistema<br>
+                            <a href="https://github.com/Netflix/chaosmonkey"
+                               class="smaller" target="_blank" rel="noopener">github.com/Netflix/chaosmonkey</a>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Ferramentas</h3>
+                        <div>
+                            <p class="fw-400">Kube Monkey</p>
+                            Versão do <em>Chaos Monkey</em> para Kubernetes<br>
+                            <a href="https://github.com/asobti/kube-monkey"
+                               class="smaller" target="_blank" rel="noopener">github.com/asobti/kube-monkey</a>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Ferramentas</h3>
+                        <div>
+                            <div>
+                                <p class="fw-400">Chaos Kong</p>
+                                Disables entire AWS availability zones
+                            </div>
+                            <div class="fragment fade-up">
+                                <p class="fw-400">Latency Monkey</p>
+                                Introduces latency to simulate network outages and degradation
+                            </div>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Ferramentas</h3>
+                        <div>
+                            <p class="fw-400">Gremlin</p>
+                            A chaos engineering program that works with AWS and Kubernetes and focuses on the retail and
+                            finance sectors. It comes with built-in redundancy that stops chaos engineering experiments
+                            when they threaten the system.<br>
+                            <a href="https://www.gremlin.com/"
+                               class="smaller" target="_blank" rel="noopener">gremlin.com</a>
+                        </div>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Chaos Engineering</h4>
+                        <h3>Ferramentas</h3>
+                        <div>
+                            <p class="fw-400">AWS Fault Injection Simulator</p>
+                            Includes fault templates that AWS can inject into production instances. The platform has
+                            built-in redundancy and protective measures to keep the failure injection testing from
+                            causing system problems.<br>
+                            <a href="https://aws.amazon.com/fis/"
+                               class="smaller" target="_blank" rel="noopener">aws.amazon.com/fis</a>
+
+                        </div>
+                    </section>
+                </section> <!-- Chaos Engineering -->
+
+                <section> <!-- Istio -->
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Service Mesh</h4>
+                        <h3>Istio</h3>
+                        <blockquote class="small">
+                            is an open source service mesh that layers transparently onto existing distributed
+                            applications
+                        </blockquote>
+                        <a href="https://istio.io/latest/about/service-mesh/#what-is-istio"
+                           class="smaller">istio.io</a>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Service Mesh</h4>
+                        <h3>Istio</h3>
+                        <figure>
+                            <img src="https://istio.io/latest/img/service-mesh.svg">
+                            <figcaption>Visão geral da arquitetura</figcaption>
+                        </figure>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Service Mesh</h4>
+                        <h3>Istio</h3>
+                        <h5>Funcionalidades</h5>
+                        <ul>
+                            <li>
+                                Comunicação segura entre serviços através de TLS, autenticação e autorização
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Service Mesh</h4>
+                        <h3>Istio</h3>
+                        <h5>Funcionalidades</h5>
+                        <ul>
+                            <li>
+                                Balanceamento de carga automática para tráfegos HTTP, gRPC, WebSocket e TCP
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Service Mesh</h4>
+                        <h3>Istio</h3>
+                        <h5>Funcionalidades</h5>
+                        <ul>
+                            <li>
+                                Controle de tráfego através de roteamento, retentativas, <em>fault injection</em> e
+                                outros
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Service Mesh</h4>
+                        <h3>Istio</h3>
+                        <h5>Funcionalidades</h5>
+                        <ul>
+                            <li>
+                                Políticas que permitem controle de acesso, <em>rate limiting</em> e outras quotas
+                            </li>
+                        </ul>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Service Mesh</h4>
+                        <h3>Istio</h3>
+                        <h5>Funcionalidades</h5>
+                        <ul>
+                            <li>
+                                Coleta automática de métricas, logs e <em>traces</em> para todo o tráfego do cluster
+                            </li>
+                        </ul>
+                    </section>
+                </section> <!-- Istio -->
+
+                <section> <!-- Hands on -->
+                    <section>
+                        <h2>Hands-on</h2>
+                    </section>
+
+                    <section>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>1. Instalando minikube</h3>
+                        <p class="small">
+                            Siga a documentação oficial em
+                            <a href="https://minikube.sigs.k8s.io/docs/start/" target="_blank" rel="noopener">
+                                minikube.sigs.k8s.io
+                            </a> para instalar o <code>minikube</code> de acordo com seu sistema operacional
+                        </p>
+
+                        <p class="small">
+                            Para ambientes Linux com arquitetura amd-64, o comando é:
+                        </p>
+                        <pre><code data-trim>
+                            curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+                            sudo install minikube-linux-amd64 /usr/local/bin/minikube
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>2. Instalando este repositório</h3>
+
+                        <p class="small">
+                            Clone <em>(ou atualize com <code>git pull</code>)</em> sua versão deste repositório:
+                        </p>
+                        <pre><code data-trim>
+                            git clone git@github.com:&lt;repositorio&gt;/microservices.git
+                        </code></pre>
+                        <pre class="shell-output">
+                            Cloning into 'microservices'...
+                        </pre>
+
+                        <p class="small">Teste o utilitário criado para ajudar na configuração do ambiente:</p>
+                        <pre><code data-trim>
+                            ./workshopctl
+                        </code></pre>
+                        <pre class="shell-output">
+                            <span class="fg-yellow">Usage:</span>
+                              ./workshopctl <span class="fg-cyan">&lt;command&gt;</span>
+
+                            <span class="fg-yellow">Commands:</span>
+                              <span class="fg-green">start</span>                      Starts the minikube cluster
+                              <span class="fg-green">circuit-breaker</span> <span class="fg-cyan">[delete]</span>   Applies or deletes the Circuit Breaker rules
+                              <span class="fg-green">docker-env</span>                 Prints the docker env command from minikube
+                              <span class="fg-green">generate-data</span>              Access every service to generate data for visualization
+                              <span class="fg-green">ingress</span>                    Displays the commands necessary for gateway configuration
+                              <span class="fg-green">pods</span>                       Proxy to run <span
+                                class="fg-cyan">minikube kubectl -- get pods</span>
+                              <span class="fg-green">rebuild</span> <span class="fg-cyan">&lt;name&gt;</span>             Rebuilds a single docker image
+                              <span class="fg-green">rebuild-all</span>                Rebuilds every docker image
+                              <span class="fg-green">services</span>                   Proxy to run <span
+                                class="fg-cyan">minikube kubectl -- get services</span>
+                              <span class="fg-green">tunnel</span>                     Proxy to run <span
+                                class="fg-cyan">minikube tunnel --cleanup</span>
+                              <span class="fg-green">help</span>                       Displays this help menu
+                        </pre>
+                    </section>
+
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>3. Instalando o Istio</h3>
+                        <p class="small">
+                            Seguindo a <a href="https://istio.io/latest/docs/setup/getting-started/"
+                                          target="_blank" rel="noopener">documentação em istio.io</a>:
+                        </p>
+                        <pre><code data-trim>
+                            curl -L https://istio.io/downloadIstio | sh -
+                            cd istio-1.10.3
+                            export PATH=$PWD/bin:$PATH
+                        </code></pre>
+                        <p class="small">
+                            <em>
+                                Isso irá adicionar a pasta <code>istio-1.10.3/bin</code> em seu <code>$PATH</code>
+                                temporariamente.<br><br>
+                                Para fazer de forma permanente, você pode colocar o último comando
+                                (<code>export ...</code>) em algum arquivo de seu sistema que seja sempre carregado,
+                                como <code>/etc/profile</code>, <code>~/.bashrc</code>, <code>~/.zshrc</code>, entre
+                                outros.
+                            </em>
+                        </p>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>3. Instalando o Istio</h3>
+
+                        <p class="small">
+                            Instalando com o perfil <code>demo</code> <em class="smaller">(saiba mais sobre os outros
+                            perfis <a href="https://istio.io/latest/docs/setup/additional-setup/config-profiles/"
+                                      target="_blank" rel="noopener">na documentação</a>)</em>
+                        </p>
+                        <pre><code data-trim>
+                            istioctl install --set profile=demo -y
+                        </code></pre>
+                        <pre class="shell-output">
+                            ✔ Istio core installed
+                            ✔ Istiod installed
+                            ✔ Egress gateways installed
+                            ✔ Ingress gateways installed
+                            ✔ Installation complete
+                        </pre>
+
+                        <p class="small">
+                            Adicionando a <em>label</em> <code>istio-injection=enabled</code> no namespace
+                        </p>
+                        <pre><code data-trim>
+                            kubectl label namespace default istio-injection=enabled
+                        </code></pre>
+                        <pre class="shell-output">
+                            namespace/default labeled
+                        </pre>
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>4. Deploy do cluster</h3>
+                        <p class="small">
+                            Utilize o comando abaixo para iniciar o <em>cluster</em>, fazer o <em>build</em> das imagens
+                            do Docker e aplicar as configurações necessárias:
+                        </p>
+                        <pre><code data-trim>
+                            ./workshopctl start
+                        </code></pre>
+                        <pre class="shell-output">
+                            <span class="bg-cyan"> </span> Starting minikube cluster
+                            ...
+                            <br>
+                            <span class="bg-cyan"> </span> Building every docker image
+                            ...
+                            <br>
+                            <span class="bg-cyan"> </span> Creating resources
+                            ...
+                            <br>
+                            <span class="bg-cyan"> </span> You should now run the following command in another terminal:
+                              <span class="fg-yellow">./workshopctl tunnel</span>
+                            <br>
+                            <span class="bg-cyan"> </span> And then run this one to get the external IPs:
+                              <span class="fg-yellow">./workshopctl services</span>
+                        </pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>4. Deploy do cluster</h3>
+                        <p class="small">
+                            Aguarde até que todos os pods estejam com a coluna <code>READY</code> como <em>2/2</em>:
+                        </p>
+                        <pre><code data-trim>
+                            ./workshopctl pods
+                        </code></pre>
+                        <pre class="shell-output">
+                            NAME                                 READY   STATUS    RESTARTS   AGE
+                            acl-deployment-6b446757cc-4mlmg      2/2     Running   0          7m
+                            grades-db-0                          2/2     Running   0          7m
+                            grades-deployment-96469fdd4-9hbv7    2/2     Running   0          7m
+                            secrets-db-0                         2/2     Running   0          7m
+                            secrets-deployment-c48c75c9f-srn4l   2/2     Running   0          7m
+                        </pre>
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>5. Acessando os serviços</h3>
+
+                        <p class="small">
+                            Como não há um <em>Load Balancing</em> no <code>minikube</code>, devemos expor os IPs dos
+                            serviços para serem acessados localmente.
+                        </p>
+                        <p class="small">
+                            Execute o comando abaixo em um novo terminal e mantenha-o rodando:
+                        </p>
+                        <pre><code data-trim>
+                            ./workshopctl tunnel
+                        </code></pre>
+                        <pre class="shell-output">
+                            Status:
+                            	machine: minikube
+                            ...
+                        </pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>5. Acessando os serviços</h3>
+
+                        <p class="small">
+                            Volte ao terminal anterior e execute o comando a seguir até que os 3
+                            <code>EXTERNAL-IP</code>s estejam alocados:
+                        </p>
+                        <pre><code data-trim>
+                            ./workshopctl services
+                        </code></pre>
+                        <pre class="shell-output">
+                            NAME              TYPE           CLUSTER-IP       EXTERNAL-IP     PORT(S)          AGE
+                            acl-service       LoadBalancer   10.97.223.15     <b>10.97.223.15</b>    80:30551/TCP     8m
+                            <span class="text-muted">grades-db         NodePort       10.97.203.26     &lt;none&gt;          5432:30388/TCP   8m</span>
+                            grades-service    LoadBalancer   10.110.77.210    <b>10.110.77.210</b>   80:31828/TCP     8m
+                            <span class="text-muted">kubernetes        ClusterIP      10.96.0.1        &lt;none&gt;          443/TCP          9m</span>
+                            <span class="text-muted">secrets-db        NodePort       10.100.161.176   &lt;none&gt;          5432:31471/TCP   8m</span>
+                            secrets-service   LoadBalancer   10.101.139.30    <b>10.101.139.30</b>   80:30436/TCP     8m
+                        </pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>5. Acessando os serviços</h3>
+
+                        <p class="small">Para testar o serviço de ACL, execute:</p>
+                        <pre><code data-trim>
+                            IP=<kbd>&lt;IP-DA-ACL&gt;</kbd> \
+                              curl -s --user admin:123456 \
+                              http://${IP}/acl/role/admin/resources
+                        </code></pre>
+                        <pre class="shell-output">
+                            {
+                              "resources": [
+                                "Secrets\\Domain\\Secret\\Secret",
+                                "Grades\\Domain\\Application\\Application"
+                              ]
+                            }
+                        </pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>5. Acessando os serviços</h3>
+
+                        <p class="small">Para testar o serviço de Notas, execute:</p>
+                        <pre><code data-trim>
+                            IP=<kbd>&lt;IP-DO-GRADES&gt;</kbd> \
+                              curl -s --user admin:123456 \
+                              http://${IP}/grades
+                        </code></pre>
+                        <pre class="shell-output">
+                            {
+                              "data": {
+                                "1": {
+                                  "id": 1,
+                                  "name": "Atas",
+                                  "grades": [],
+                                  "average": null
+                                },
+                                ...
+                              }
+                            }
+
+                        </pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>5. Acessando os serviços</h3>
+
+                        <p class="small">Para testar o serviço de Secrets, execute:</p>
+                        <pre><code data-trim>
+                            IP=<kbd>&lt;IP-DO-SECRETS&gt;</kbd> \
+                              curl -s --user admin:123456 \
+                              http://${IP}/secrets
+                        </code></pre>
+                        <pre class="shell-output">
+                            {
+                              "data": [
+                                {
+                                  "id": 1,
+                                  "name": "Postgres",
+                                  "data": {
+                                    "password": "UVQ+NpVTBdm8fis74HfReYLwjLiLtkhg4hRskE81xqYxihz9CdNZGUQxOv2U",
+                                    "username": "postgres"
+                                  }
+                                },
+                                ...
+                              ]
+                            }
+                        </pre>
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>6. Criando o API Gateway</h3>
+                        Confira o arquivo <code>k8s/gateway.yml</code> para verificar a configuração
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>6. Criando o API Gateway</h3>
+                        <p class="small">
+                            Vamos seguir novamente a
+                            <a href="https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-control/#determining-the-ingress-ip-and-ports"
+                               target="_blank" rel="noopener">documentação oficial</a> para determinar o IP e porta do
+                            Ingress:
+                        </p>
+                        <pre><code data-trim>./workshopctl ingress</code></pre>
+                        <pre class="shell-output">
+                            <span class="fg-gray">Execute the following command:</span>
+                            export INGRESS_PORT=32383
+
+                            <span class="fg-gray">Add this entry to /etc/hosts:</span>
+                            192.168.49.2 acl-service.default.svc.cluster.local grades-service.default.svc.cluster.local secrets-service.default.svc.cluster.local
+                        </pre>
+                        <em class="small">Copie as linhas acima e cole-as no seu terminal para salvar as variáveis</em>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>6. Criando o API Gateway</h3>
+                        <p class="small">
+                            Teste alguma requisição informando a variável <code>$GATEWAY_URL</code> no hostname:
+                        </p>
+                        <pre><code data-trim>
+                            curl -s --user admin:123456 \
+                                http://acl-service.default.svc.cluster.local:$INGRESS_PORT/acl/role/admin/resources
+                        </code></pre>
+                        <pre class="shell-output">
+                            {
+                              "resources": [
+                                "Secrets\\Domain\\Secret\\Secret",
+                                "Grades\\Domain\\Application\\Application"
+                              ]
+                            }
+                        </pre>
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>7. Dashboards do Istio</h3>
+                        <p class="small">
+                            Instalando o
+                            <a href="https://istio.io/latest/docs/ops/integrations/kiali/"
+                               target="_blank" rel="noopener">Kiali</a> <em>(dashboard)</em>,
+                            <a href="https://istio.io/latest/docs/ops/integrations/prometheus/"
+                               target="_blank" rel="noopener">Prometheus</a> <em>(métricas)</em>,
+                            <a href="https://istio.io/latest/docs/ops/integrations/grafana/"
+                               target="_blank" rel="noopener">Grafana</a> <em>(monitoramento)</em> e
+                            <a href="https://istio.io/latest/docs/ops/integrations/jaeger/"
+                               target="_blank" rel="noopener">Jaeger</a> <em>(tracing distribuído)</em>:
+                        </p>
+                        <pre><code data-trim>
+                            minikube kubectl -- apply -f &lt;caminho-para-o-istio&gt;/samples/addons
+                        </code></pre>
+                        <pre class="shell-output">
+                            serviceaccount/grafana configured
+                            configmap/grafana configured
+                            service/grafana configured
+                            deployment.apps/grafana configured
+                            ...
+                        </pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>7. Dashboards do Istio</h3>
+                        <p class="small">
+                            Como nossos serviços não possuem muitas requisições, precisamos gerar alguns dados para
+                            serem visualizados:
+                        </p>
+                        <pre><code data-trim>
+                            ./workshopctl generate-data
+                        </code></pre>
+                        <pre class="shell-output">
+                            <span class="bg-cyan"> </span> Fetching http://192.168.49.2:32383/secrets 100 times...
+                              ............................................................
+
+                            <span class="bg-cyan"> </span> Fetching http://192.168.49.2:32383/grades 100 times...
+                              ............................................................
+
+                            <span class="bg-green"> </span> Done
+                        </pre>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>7. Dashboards do Istio</h3>
+                        <p class="small">
+                            Abrindo o Kiali no navegador:
+                        </p>
+                        <pre><code data-trim>
+                            istioctl dashboard kiali
+                        </code></pre>
+                        <pre class="shell-output">
+                            http://localhost:20001/kiali
+                        </pre>
+                    </section>
+
+                    <section data-auto-animate data-auto-animate-restart>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>8. Chaos Engineering no Istio</h3>
+                        <p class="small">
+                            Execute o comando abaixo e veja o que acontece:
+                        </p>
+                        <pre><code data-trim>
+                            curl -s --user moderator:123456 \
+                              http://acl-service.default.svc.cluster.local:$INGRESS_PORT/acl/role/moderator/resources
+                        </code></pre>
+                        <em class="small fragment">Fault Injection: Delay</em>
+                    </section>
+                    <section data-auto-animate>
+                        <h4 class="subtitle">Hands-on</h4>
+                        <h3>8. Chaos Engineering no Istio</h3>
+                        <p class="small">
+                            Aplicando regras do Circuit Breaker:
+                        </p>
+                        <pre><code data-trim>
+                            ./workshopctl circuit-breaker
+                        </code></pre>
+                        <pre class="shell-output">
+                            destinationrule.networking.istio.io/acl-istio-destinationrule configured
+                        </pre>
+
+                        <p class="small">
+                            Abra dois terminais e execute em ambos:
+                        </p>
+                        <pre><code data-trim>
+                            while true; do \
+                              curl --user admin:123456 \
+                              "http://acl-service.default.svc.cluster.local:$INGRESS_PORT/acl/role/admin/resources" -w "\n"; \
+                              sleep 1; \
+                            done
+                        </code></pre>
+
+                        <div class="small">
+                            <p class="smaller">
+                                Para desfazer essa regra:
+                            </p>
+                            <pre><code data-trim>
+                                ./workshopctl circuit-breaker delete
+                            </code></pre>
+                        </div>
+                    </section>
+                </section> <!-- Hands on -->
+
+                <section>
+                    <h1>Referências</h1>
+                    <ul>
+                        <li>
+                            <a href="https://microservices.io/" target="_blank" rel="noopener">
+                                microservices.io
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://istio.io/" target="_blank" rel="noopener">
+                                istio.io
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.istiobyexample.dev/" target="_blank" rel="noopener">
+                                istiobyexample.dev
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.istioworkshop.io/" target="_blank" rel="noopener">
+                                istioworkshop.io
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+
+        <script src="../reveal.js/dist/reveal.js"></script>
+        <script>
+            document.querySelectorAll('pre.shell-output, code[data-trim]').forEach((node) => {
+                let lines = node.innerHTML.split('\n'),
+                    regex;
+                for (let i = 0; i < lines.length; i++) {
+                    // lines[i] = lines[i].trim();
+                    if (((i === 0) || (i === lines.length - 1)) && (lines[i].trim() === '')) {
+                        lines.splice(i--, 1);
+                        continue;
+                    }
+
+                    if (!regex) {
+                        const count = lines[i].search(/\S/);
+                        if (count < 1) {
+                            break;
+                        }
+                        regex = new RegExp('^\\s{' + count + '}', 'g');
+                    }
+                    lines[i] = lines[i].replace(regex, '');
+                }
+                node.innerHTML = lines.join('\n');
+            })
+            Reveal.initialize({
+                hash: true,
+                mouseWheel: true
+            });
+        </script>
+    </body>
+</html>
+

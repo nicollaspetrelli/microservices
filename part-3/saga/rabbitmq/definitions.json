@@ -1,0 +1,146 @@
+{
+  "bindings": [
+    {
+      "arguments": {},
+      "destination": "flight_fail",
+      "destination_type": "queue",
+      "routing_key": "flight_fail",
+      "source": "router",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "destination": "flight_success",
+      "destination_type": "queue",
+      "routing_key": "flight_success",
+      "source": "router",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "destination": "hotel_fail",
+      "destination_type": "queue",
+      "routing_key": "hotel_fail",
+      "source": "router",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "destination": "hotel_success",
+      "destination_type": "queue",
+      "routing_key": "hotel_success",
+      "source": "router",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "destination": "reservation_fail",
+      "destination_type": "queue",
+      "routing_key": "reservation_fail",
+      "source": "router",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "destination": "reservation_success",
+      "destination_type": "queue",
+      "routing_key": "reservation_success",
+      "source": "router",
+      "vhost": "/"
+    }
+  ],
+  "exchanges": [
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "router",
+      "type": "direct",
+      "vhost": "/"
+    }
+  ],
+  "global_parameters": [],
+  "parameters": [],
+  "permissions": [
+    {
+      "configure": ".*",
+      "read": ".*",
+      "user": "rabbit",
+      "vhost": "/",
+      "write": ".*"
+    }
+  ],
+  "policies": [],
+  "queues": [
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "hotel_fail",
+      "type": "classic",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "reservation_success",
+      "type": "classic",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "hotel_success",
+      "type": "classic",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "flight_success",
+      "type": "classic",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "reservation_fail",
+      "type": "classic",
+      "vhost": "/"
+    },
+    {
+      "arguments": {},
+      "auto_delete": false,
+      "durable": true,
+      "name": "flight_fail",
+      "type": "classic",
+      "vhost": "/"
+    }
+  ],
+  "rabbit_version": "3.8.18",
+  "rabbitmq_version": "3.8.18",
+  "topic_permissions": [],
+  "users": [
+    {
+      "hashing_algorithm": "rabbit_password_hashing_sha256",
+      "limits": {},
+      "name": "rabbit",
+      "password_hash": "rgFB/Z5qPDJvQQ2A1FYQVEa8nYND5Dgv6e3X2P24OBAKf7jI",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "limits": [],
+      "metadata": {
+        "description": "Default virtual host",
+        "tags": []
+      },
+      "name": "/"
+    }
+  ]
+}

@@ -1,0 +1,492 @@
+Sending build context to Docker daemon   2.13MB
+Step 1/10 : FROM php:8-alpine
+8-alpine: Pulling from library/php
+5843afab3874: Already exists
+cfcf566573f3: Pulling fs layer
+f4ff9828d954: Pulling fs layer
+165b10189b0f: Pulling fs layer
+976f981c135b: Pulling fs layer
+97c4d5ba6629: Pulling fs layer
+ef82788fcc85: Pulling fs layer
+6eb1cd221ec5: Pulling fs layer
+187f17dd0b52: Pulling fs layer
+976f981c135b: Waiting
+6eb1cd221ec5: Waiting
+187f17dd0b52: Waiting
+97c4d5ba6629: Waiting
+ef82788fcc85: Waiting
+f4ff9828d954: Verifying Checksum
+f4ff9828d954: Download complete
+165b10189b0f: Verifying Checksum
+165b10189b0f: Download complete
+cfcf566573f3: Verifying Checksum
+cfcf566573f3: Download complete
+cfcf566573f3: Pull complete
+f4ff9828d954: Pull complete
+165b10189b0f: Pull complete
+97c4d5ba6629: Verifying Checksum
+97c4d5ba6629: Download complete
+976f981c135b: Download complete
+976f981c135b: Pull complete
+ef82788fcc85: Verifying Checksum
+ef82788fcc85: Download complete
+97c4d5ba6629: Pull complete
+6eb1cd221ec5: Download complete
+187f17dd0b52: Download complete
+ef82788fcc85: Pull complete
+6eb1cd221ec5: Pull complete
+187f17dd0b52: Pull complete
+Digest: sha256:925570d8bc874881337316261547edab310eb5249c7017e6bb0d0db7462a326d
+Status: Downloaded newer image for php:8-alpine
+ ---> 8104116fa32c
+Step 2/10 : WORKDIR /app
+ ---> Running in 67db52162c7f
+Removing intermediate container 67db52162c7f
+ ---> 2a6f4b117a2c
+Step 3/10 : COPY . .
+ ---> f48ae33a44ca
+Step 4/10 : RUN apk add --no-cache $PHPIZE_DEPS     && pecl install redis-5.3.4     && docker-php-ext-enable redis     && apk del --purge $PHPIZE_DEPS
+ ---> Running in ac628f46282c
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/community/x86_64/APKINDEX.tar.gz
+(1/25) Installing m4 (1.4.18-r2)
+(2/25) Installing libbz2 (1.0.8-r1)
+(3/25) Installing perl (5.32.1-r0)
+(4/25) Installing autoconf (2.71-r0)
+(5/25) Installing dpkg (1.20.9-r0)
+(6/25) Installing pkgconf (1.7.4-r0)
+(7/25) Installing dpkg-dev (1.20.9-r0)
+(8/25) Installing libmagic (5.40-r1)
+(9/25) Installing file (5.40-r1)
+(10/25) Installing libgcc (10.3.1_git20210424-r2)
+(11/25) Installing libstdc++ (10.3.1_git20210424-r2)
+(12/25) Installing binutils (2.35.2-r2)
+(13/25) Installing libgomp (10.3.1_git20210424-r2)
+(14/25) Installing libatomic (10.3.1_git20210424-r2)
+(15/25) Installing libgphobos (10.3.1_git20210424-r2)
+(16/25) Installing gmp (6.2.1-r0)
+(17/25) Installing isl22 (0.22-r0)
+(18/25) Installing mpfr4 (4.1.0-r0)
+(19/25) Installing mpc1 (1.2.1-r0)
+(20/25) Installing gcc (10.3.1_git20210424-r2)
+(21/25) Installing musl-dev (1.2.2-r3)
+(22/25) Installing libc-dev (0.7.2-r3)
+(23/25) Installing g++ (10.3.1_git20210424-r2)
+(24/25) Installing make (4.3-r0)
+(25/25) Installing re2c (2.1.1-r0)
+Executing busybox-1.33.1-r2.trigger
+OK: 247 MiB in 57 packages
+downloading redis-5.3.4.tgz ...
+Starting to download redis-5.3.4.tgz (268,154 bytes)
+........................................................done: 268,154 bytes
+29 source files, building
+running: phpize
+Configuring for:
+PHP Api Version:         20200930
+Zend Module Api No:      20200930
+Zend Extension Api No:   420200930
+configure.ac:18: warning: $as_echo is obsolete; use AS_ECHO(["message"]) instead
+build/php.m4:2072: PHP_CONFIG_NICE is expanded from...
+configure.ac:18: the top level
+configure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: The macro `AC_LANG_C' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: The macro `AC_TRY_LINK' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/general.m4:2920: AC_TRY_LINK is expanded from...
+lib/m4sugar/m4sh.m4:692: _AS_IF_ELSE is expanded from...
+lib/m4sugar/m4sh.m4:699: AS_IF is expanded from...
+./lib/autoconf/general.m4:2249: AC_CACHE_VAL is expanded from...
+./lib/autoconf/general.m4:2270: AC_CACHE_CHECK is expanded from...
+build/libtool.m4:561: _LT_AC_LOCK is expanded from...
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2728: _LT_AC_LANG_C_CONFIG is expanded from...
+build/libtool.m4:2727: AC_LIBTOOL_LANG_C_CONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not exist
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: output file \`$ofile' does not look like a libtool script
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: using \`LTCC=$LTCC', extracted from \`$ofile'
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: tag name \"$tagname\" already exists
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: The macro `AC_LANG_CPLUSPLUS' is obsolete.
+configure.ac:161: You should run autoupdate.
+./lib/autoconf/c.m4:262: AC_LANG_CPLUSPLUS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me:${as_lineno-$LINENO}: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+configure.ac:161: warning: back quotes and double quotes must not be escaped in: $as_me: WARNING: \`$CC' does not support \`-c -o', so \`make -j' may be unsafe
+build/libtool.m4:1185: AC_LIBTOOL_SYS_HARD_LINK_LOCKS is expanded from...
+build/libtool.m4:2810: _LT_AC_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:2809: AC_LIBTOOL_LANG_CXX_CONFIG is expanded from...
+build/libtool.m4:1918: _LT_AC_TAGCONFIG is expanded from...
+build/libtool.m4:70: AC_LIBTOOL_SETUP is expanded from...
+build/libtool.m4:52: _AC_PROG_LIBTOOL is expanded from...
+build/libtool.m4:39: AC_PROG_LIBTOOL is expanded from...
+configure.ac:161: the top level
+enable igbinary serializer support? [no] : enable lzf compression support? [no] : enable zstd compression support? [no] : building in /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4
+running: /tmp/pear/temp/redis/configure --with-php-config=/usr/local/bin/php-config --enable-redis-igbinary=no --enable-redis-lzf=no --enable-redis-zstd=no
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for a sed that does not truncate output... /bin/sed
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for cc... cc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables...
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether cc accepts -g... yes
+checking for cc option to enable C11 features... none needed
+checking how to run the C preprocessor... cc -E
+checking for icc... no
+checking for suncc... no
+checking for system library directory... lib
+checking if compiler supports -R... no
+checking if compiler supports -Wl,-rpath,... yes
+checking build system type... x86_64-pc-linux-musl
+checking host system type... x86_64-pc-linux-musl
+checking target system type... x86_64-pc-linux-musl
+checking for PHP prefix... /usr/local
+checking for PHP includes... -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib
+checking for PHP extension directory... /usr/local/lib/php/extensions/no-debug-non-zts-20200930
+checking for PHP installed headers prefix... /usr/local/include/php
+checking if debug is enabled... no
+checking if zts is enabled... no
+checking for gawk... no
+checking for nawk... no
+checking for awk... awk
+checking if awk is broken... no
+checking whether to enable redis support... yes, shared
+checking whether to enable sessions... yes
+checking whether to enable json serializer support... yes
+checking whether to enable igbinary serializer support... no
+checking whether to enable msgpack serializer support... no
+checking whether to enable lzf compression... no
+checking use system liblzf... no
+checking whether to enable Zstd compression... no
+checking use system libsztd... yes
+checking whether to enable lz4 compression... no
+checking use system liblz4... no
+checking for hash includes... /usr/local/include/php
+checking for json includes... /usr/local/include/php
+checking for redis json support... enabled
+checking for redis igbinary support... disabled
+checking for pkg-config... /usr/bin/pkg-config
+checking for git... no
+checking for a sed that does not truncate output... /bin/sed
+checking for ld used by cc... /usr/x86_64-alpine-linux-musl/bin/ld
+checking if the linker (/usr/x86_64-alpine-linux-musl/bin/ld) is GNU ld... yes
+checking for /usr/x86_64-alpine-linux-musl/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for dlfcn.h... yes
+checking the maximum length of command line arguments... 98304
+checking command to parse /usr/bin/nm -B output from cc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if cc supports -fno-rtti -fno-exceptions... no
+checking for cc option to produce PIC... -fPIC
+checking if cc PIC flag -fPIC works... yes
+checking if cc static flag -static works... yes
+checking if cc supports -c -o file.o... yes
+checking whether the cc linker (/usr/x86_64-alpine-linux-musl/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... no
+
+creating libtool
+appending configuration tag "CXX" to libtool
+configure: patching config.h.in
+configure: creating ./config.status
+config.status: creating config.h
+running: make
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis.c -o redis.lo
+mkdir .libs
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis.c  -fPIC -DPIC -o .libs/redis.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_commands.c -o redis_commands.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_commands.c  -fPIC -DPIC -o .libs/redis_commands.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/library.c -o library.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/library.c  -fPIC -DPIC -o .libs/library.o
+In file included from /tmp/pear/temp/redis/common.h:12,
+                 from /tmp/pear/temp/redis/php_redis.h:20,
+                 from /tmp/pear/temp/redis/library.c:1:
+In function 'smart_str_appendl_ex',
+    inlined from 'redis_hash_auth' at /tmp/pear/temp/redis/library.c:721:5,
+    inlined from 'append_auth_hash' at /tmp/pear/temp/redis/library.c:749:14:
+/usr/local/include/php/Zend/zend_smart_str.h:119:2: warning: writing 65 bytes into a region of size 1 [-Wstringop-overflow=]
+  119 |  memcpy(ZSTR_VAL(dest->s) + ZSTR_LEN(dest->s), str, len);
+      |  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_session.c -o redis_session.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_session.c  -fPIC -DPIC -o .libs/redis_session.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_array.c -o redis_array.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_array.c  -fPIC -DPIC -o .libs/redis_array.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_array_impl.c -o redis_array_impl.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_array_impl.c  -fPIC -DPIC -o .libs/redis_array_impl.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_cluster.c -o redis_cluster.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_cluster.c  -fPIC -DPIC -o .libs/redis_cluster.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/cluster_library.c -o cluster_library.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/cluster_library.c  -fPIC -DPIC -o .libs/cluster_library.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/redis_sentinel.c -o redis_sentinel.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/redis_sentinel.c  -fPIC -DPIC -o .libs/redis_sentinel.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=compile cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -c /tmp/pear/temp/redis/sentinel_library.c -o sentinel_library.lo
+ cc -I. -I/tmp/pear/temp/redis -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext -DHAVE_CONFIG_H -g -O2 -c /tmp/pear/temp/redis/sentinel_library.c  -fPIC -DPIC -o .libs/sentinel_library.o
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=link cc -shared -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/include -I/tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/main -I/tmp/pear/temp/redis -I/usr/local/include/php -I/usr/local/include/php/main -I/usr/local/include/php/TSRM -I/usr/local/include/php/Zend -I/usr/local/include/php/ext -I/usr/local/include/php/ext/date/lib -I/usr/local/include/php/ext  -DHAVE_CONFIG_H  -g -O2    -o redis.la -export-dynamic -avoid-version -prefer-pic -module -rpath /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/modules  redis.lo redis_commands.lo library.lo redis_session.lo redis_array.lo redis_array_impl.lo redis_cluster.lo cluster_library.lo redis_sentinel.lo sentinel_library.lo
+cc -shared  .libs/redis.o .libs/redis_commands.o .libs/library.o .libs/redis_session.o .libs/redis_array.o .libs/redis_array_impl.o .libs/redis_cluster.o .libs/cluster_library.o .libs/redis_sentinel.o .libs/sentinel_library.o   -Wl,-soname -Wl,redis.so -o .libs/redis.so
+creating redis.la
+(cd .libs && rm -f redis.la && ln -s ../redis.la redis.la)
+/bin/sh /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/libtool --mode=install cp ./redis.la /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/modules
+cp ./.libs/redis.so /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/modules/redis.so
+cp ./.libs/redis.lai /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/modules/redis.la
+PATH="$PATH:/sbin" ldconfig -n /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/modules
+----------------------------------------------------------------------
+Libraries have been installed in:
+   /tmp/pear/temp/pear-build-defaultuserOJiFDc/redis-5.3.4/modules
+
+If you ever happen to want to link against installed libraries
+in a given directory, LIBDIR, you must either use libtool, and
+specify the full pathname of the library, or use the `-LLIBDIR'
+flag during linking and do at least one of the following:
+   - add LIBDIR to the `LD_LIBRARY_PATH' environment variable
+     during execution
+   - add LIBDIR to the `LD_RUN_PATH' environment variable
+     during linking
+   - use the `-Wl,--rpath -Wl,LIBDIR' linker flag
+
+See any operating system documentation about shared libraries for
+more information, such as the ld(1) and ld.so(8) manual pages.
+----------------------------------------------------------------------
+
+Build complete.
+Don't forget to run 'make test'.
+
+running: make INSTALL_ROOT="/tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4" install
+Installing shared extensions:     /tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4/usr/local/lib/php/extensions/no-debug-non-zts-20200930/
+running: find "/tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4" | xargs ls -dils
+ 915134      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:25 /tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4
+ 915172      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:25 /tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4/usr
+ 915173      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:25 /tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4/usr/local
+ 915174      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:25 /tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4/usr/local/lib
+ 915175      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:25 /tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4/usr/local/lib/php
+ 915176      4 drwxr-xr-x    3 root     root          4096 Jul 23 19:25 /tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4/usr/local/lib/php/extensions
+ 915177      4 drwxr-xr-x    2 root     root          4096 Jul 23 19:25 /tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4/usr/local/lib/php/extensions/no-debug-non-zts-20200930
+ 915171   3372 -rwxr-xr-x    1 root     root       3450976 Jul 23 19:25 /tmp/pear/temp/pear-build-defaultuserOJiFDc/install-redis-5.3.4/usr/local/lib/php/extensions/no-debug-non-zts-20200930/redis.so
+
+Build process completed successfully
+Installing '/usr/local/lib/php/extensions/no-debug-non-zts-20200930/redis.so'
+install ok: channel://pecl.php.net/redis-5.3.4
+configuration option "php_ini" is not set to php.ini location
+You should add "extension=redis.so" to php.ini
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.14/community/x86_64/APKINDEX.tar.gz
+(1/1) Installing .docker-php-ext-enable-deps (20210723.192514)
+OK: 247 MiB in 58 packages
+[91mWARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/main: No such file or directory
+WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/community: No such file or directory
+[0m(1/1) Purging .docker-php-ext-enable-deps (20210723.192514)
+OK: 247 MiB in 57 packages
+[91mWARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/main: No such file or directory
+WARNING: Ignoring https://dl-cdn.alpinelinux.org/alpine/v3.14/community: No such file or directory
+[0m(1/25) Purging autoconf (2.71-r0)
+(2/25) Purging m4 (1.4.18-r2)
+(3/25) Purging dpkg (1.20.9-r0)
+(4/25) Purging dpkg-dev (1.20.9-r0)
+(5/25) Purging perl (5.32.1-r0)
+(6/25) Purging file (5.40-r1)
+(7/25) Purging g++ (10.3.1_git20210424-r2)
+(8/25) Purging gcc (10.3.1_git20210424-r2)
+(9/25) Purging binutils (2.35.2-r2)
+(10/25) Purging libatomic (10.3.1_git20210424-r2)
+(11/25) Purging libgomp (10.3.1_git20210424-r2)
+(12/25) Purging libgphobos (10.3.1_git20210424-r2)
+(13/25) Purging libc-dev (0.7.2-r3)
+(14/25) Purging musl-dev (1.2.2-r3)
+(15/25) Purging make (4.3-r0)
+(16/25) Purging re2c (2.1.1-r0)
+(17/25) Purging libbz2 (1.0.8-r1)
+(18/25) Purging pkgconf (1.7.4-r0)
+(19/25) Purging libmagic (5.40-r1)
+(20/25) Purging libstdc++ (10.3.1_git20210424-r2)
+(21/25) Purging libgcc (10.3.1_git20210424-r2)
+(22/25) Purging mpc1 (1.2.1-r0)
+(23/25) Purging mpfr4 (4.1.0-r0)
+(24/25) Purging isl22 (0.22-r0)
+(25/25) Purging gmp (6.2.1-r0)
+Executing busybox-1.33.1-r2.trigger
+OK: 13 MiB in 32 packages
+Removing intermediate container ac628f46282c
+ ---> 055d8e47a1f6
+Step 5/10 : RUN mkdir -p /srv/framework
+ ---> Running in 8b7511bf8b81
+Removing intermediate container 8b7511bf8b81
+ ---> c97a688318f9
+Step 6/10 : COPY --from=ms/libs /app /srv/framework
+ ---> c36d4dc52f43
+Step 7/10 : COPY --from=composer /usr/bin/composer /usr/bin/composer
+latest: Pulling from library/composer
+5843afab3874: Already exists
+cfcf566573f3: Already exists
+f4ff9828d954: Already exists
+165b10189b0f: Already exists
+976f981c135b: Already exists
+97c4d5ba6629: Already exists
+ef82788fcc85: Already exists
+6eb1cd221ec5: Already exists
+187f17dd0b52: Already exists
+8c2f12856d78: Pulling fs layer
+664fe5ea4675: Pulling fs layer
+8661e83e60cd: Pulling fs layer
+6c9a1fb8f70d: Pulling fs layer
+91d3f7c925f0: Pulling fs layer
+e03b3670de4a: Pulling fs layer
+6c9a1fb8f70d: Waiting
+91d3f7c925f0: Waiting
+e03b3670de4a: Waiting
+8661e83e60cd: Verifying Checksum
+8661e83e60cd: Download complete
+664fe5ea4675: Verifying Checksum
+664fe5ea4675: Download complete
+8c2f12856d78: Verifying Checksum
+8c2f12856d78: Download complete
+91d3f7c925f0: Download complete
+6c9a1fb8f70d: Verifying Checksum
+6c9a1fb8f70d: Download complete
+8c2f12856d78: Pull complete
+664fe5ea4675: Pull complete
+8661e83e60cd: Pull complete
+6c9a1fb8f70d: Pull complete
+91d3f7c925f0: Pull complete
+e03b3670de4a: Verifying Checksum
+e03b3670de4a: Download complete
+e03b3670de4a: Pull complete
+Digest: sha256:bae69323278025e549750acbb03954dfb4bfa1a0e6001fa25edd764ab7be0873
+Status: Downloaded newer image for composer:latest
+ ---> 38fb5857b624
+Step 8/10 : RUN composer install --no-dev
+ ---> Running in 646eb256cac0
+[91mInstalling dependencies from lock file
+[0m[91mVerifying lock file contents can be installed on current platform.
+[0m[91mPackage operations: 0 installs, 1 update, 0 removals
+[0m[91m  - Upgrading vcampitelli/microservice-core (dev-master 6359717 => dev-master 6e0f4fb): Source already present
+[0m[91mGenerating autoload files
+[0m[91m7 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+[0mRemoving intermediate container 646eb256cac0
+ ---> 8bbd06d57e96
+Step 9/10 : EXPOSE 80
+ ---> Running in 64dbdc5bfb90
+Removing intermediate container 64dbdc5bfb90
+ ---> 73be6318ce94
+Step 10/10 : CMD ["composer", "start"]
+ ---> Running in e897eac8967e
+Removing intermediate container e897eac8967e
+ ---> a1121a0b6ff4
+Successfully built a1121a0b6ff4
+Successfully tagged ms/acl:latest

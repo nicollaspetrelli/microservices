@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  grpc:
+    image: acl_grpc
+    build:
+      context: ./
+    working_dir: /app
+    volumes:
+      - .:/app
+      - modules:/app/node_modules
+
+volumes:
+  modules:

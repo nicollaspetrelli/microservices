@@ -1,0 +1,50 @@
+{
+    "name": "vcampitelli/microservice-acl",
+    "description": "Simple ACL App for the Microservice Workshop",
+    "keywords": [
+        "microservice",
+        "acl"
+    ],
+    "homepage": "https://github.com/vcampitelli/workshop-microservice",
+    "license": "private",
+    "authors": [
+        {
+            "name": "Vinícius Campitelli",
+            "email": "eu@viniciuscampitelli.com",
+            "homepage": "https://viniciuscampitelli.com/"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "vcampitelli/microservice-acl-client": "dev-master",
+        "vcampitelli/microservice-notification-client": "dev-master",
+        "vcampitelli/microservice-core": "dev-master"
+    },
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Grades\\": "src/"
+        }
+    },
+    "scripts": {
+        "start": "php -S 0.0.0.0:80 -t public"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/srv/framework/core"
+        },
+        {
+            "type": "path",
+            "url": "/srv/framework/acl-client"
+        },
+        {
+            "type": "path",
+            "url": "/srv/framework/notification-client"
+        }
+    ]
+}

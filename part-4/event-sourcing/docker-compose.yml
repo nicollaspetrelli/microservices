@@ -1,0 +1,91 @@
+version: "3.9"
+services:
+  # Users App
+  users_app:
+    image: users_app
+    build:
+      context: ./users
+    working_dir: /app
+    volumes:
+      - ./users:/app
+      - ./libs:/srv/framework
+      - logsUsers:/var/www/logs
+    env_file:
+      - env/users_app.env
+#    depends_on:
+#      - rabbitmq
+#      - mongo
+    ports:
+      - "8000:80"
+
+  # EventStore DB
+  eventstore:
+    image: eventstore/eventstore:release-5.0.11
+    environment:
+      - EVENTSTORE_CLUSTER_SIZE=1
+      - EVENTSTORE_RUN_PROJECTIONS=All
+      - EVENTSTORE_START_STANDARD_PROJECTIONS=true
+      - EVENTSTORE_EXT_TCP_PORT=1113
+      - EVENTSTORE_HTTP_PORT=2113
+      - EVENTSTORE_INSECURE=true
+      - EVENTSTORE_ENABLE_EXTERNAL_TCP=true
+      - EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP=true
+    ports:
+      - "1113:1113"
+      - "2113:2113"
+    volumes:
+      - type: volume
+        source: eventstoreVolumeData
+        target: /var/lib/eventstore
+      - type: volume
+        source: eventstoreVolumeLogs
+        target: /var/log/eventstore
+
+#  # Command handler
+#  command_handler:
+#    image: users_app
+#    env_file:
+#      - env/users_app.env
+#    volumes:
+#      - ./users:/app
+#      - ./libs:/srv/framework
+#    depends_on:
+#      - rabbitmq
+#      - users_app
+#    command: wait-for rabbitmq:5672 -- composer run command-handler
+#
+#  # Event handler
+#  event_handler:
+#    image: users_app
+#    env_file:
+#      - env/users_app.env
+#    volumes:
+#      - ./users:/app
+#      - ./libs:/srv/framework
+#    depends_on:
+#      - rabbitmq
+#      - mongo
+#      - users_app
+#    command: wait-for rabbitmq:5672 -- composer run event-handler
+
+#  # RabbitMQ - Command Bus
+#  rabbitmq:
+#    image: rabbitmq:3-alpine
+#    env_file:
+#      - env/rabbitmq.env
+
+#  # MongoDB - Query Stack
+#  mongo:
+#    image: mongo
+#    ports:
+#      - 27017:27017
+#    env_file:
+#      - env/mongo.env
+#    volumes:
+#      - mongoQueryStack:/data/db
+
+volumes:
+  logsUsers:
+  eventstoreVolumeData:
+  eventstoreVolumeLogs:
+#  mongoQueryStack:

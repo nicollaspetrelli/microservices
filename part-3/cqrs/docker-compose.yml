@@ -1,0 +1,76 @@
+version: "3.9"
+services:
+  # Users App
+  users_app:
+    image: users_app
+    build:
+      context: ./users
+    working_dir: /app
+    volumes:
+      - ./users:/app
+      - ./libs:/srv/framework
+      - logsUsers:/var/www/logs
+    env_file:
+      - env/users_app.env
+    depends_on:
+      - rabbitmq
+      - mongo
+    ports:
+      - "8080:80"
+
+  # Users DB
+  users_db:
+    image: postgres:13-alpine
+    volumes:
+      - dbUsers:/var/lib/postgresql/data
+      - ./users/db.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+      - env/users_db.env
+
+  # Command handler
+  command_handler:
+    image: users_app
+    env_file:
+      - env/users_app.env
+    volumes:
+      - ./users:/app
+      - ./libs:/srv/framework
+    depends_on:
+      - rabbitmq
+      - users_app
+    command: wait-for rabbitmq:5672 -- composer run command-handler
+
+  # Event handler
+  event_handler:
+    image: users_app
+    env_file:
+      - env/users_app.env
+    volumes:
+      - ./users:/app
+      - ./libs:/srv/framework
+    depends_on:
+      - rabbitmq
+      - mongo
+      - users_app
+    command: wait-for rabbitmq:5672 -- composer run event-handler
+
+  # RabbitMQ - Command Bus
+  rabbitmq:
+    image: rabbitmq:3-alpine
+    env_file:
+      - env/rabbitmq.env
+
+  # MongoDB - Query Stack
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+    env_file:
+      - env/mongo.env
+    volumes:
+      - mongoQueryStack:/data/db
+
+volumes:
+  logsUsers:
+  dbUsers:
+  mongoQueryStack:

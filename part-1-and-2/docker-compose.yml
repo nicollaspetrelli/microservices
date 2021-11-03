@@ -1,0 +1,128 @@
+version: "3.9"
+services:
+  #
+  # Proxy
+  #
+  reverse-proxy:
+    image: nginx
+    ports:
+      - "8888:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - acl_app
+      - grades_app
+      - secrets_app
+
+  #
+  # Secrets
+  #
+  secrets_app:
+    image: secrets_app
+    build:
+      context: ./microservices/secrets
+    working_dir: /app
+    environment:
+      docker: "true"
+      # CACHING: 1
+    volumes:
+      - ./microservices/secrets:/app
+      - ./libs:/srv/framework
+      - logsSecrets:/var/www/logs
+    env_file:
+      - env/common.app.env
+      - env/secrets.app.env
+    depends_on:
+      - secrets_db
+
+  secrets_db:
+    image: postgres:13-alpine
+    restart: none
+    volumes:
+      - dbSecrets:/var/lib/postgresql/data
+      - ./microservices/secrets/utils/db.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+      - env/secrets.db.env
+
+  #
+  # ACL
+  #
+  acl_app:
+    image: acl_app
+    build:
+      context: ./microservices/acl
+    working_dir: /app
+    environment:
+      docker: "true"
+      # CACHING: 1
+    volumes:
+      - ./microservices/acl:/app
+      - ./libs:/srv/framework
+      - logsAcl:/var/www/logs
+    env_file:
+      - env/acl.app.env
+
+  #
+  # Grades
+  #
+  grades_app:
+    image: grades_app
+    build:
+      context: ./microservices/grades
+    working_dir: /app
+    environment:
+      docker: "true"
+      # CACHING: 1
+    volumes:
+      - ./microservices/grades:/app
+      - ./libs:/srv/framework
+      - logsGrade:/var/www/logs
+    env_file:
+      - env/common.app.env
+      - env/grades.app.env
+    depends_on:
+      - grades_db
+
+  grades_db:
+    image: postgres:13-alpine
+    restart: none
+    volumes:
+      - dbGrade:/var/lib/postgresql/data
+      - ./microservices/grades/utils/db.sql:/docker-entrypoint-initdb.d/init.sql
+    env_file:
+      - env/grades.db.env
+
+  # Notifications
+  notifications_app:
+    image: notifications_app
+    build:
+      context: ./microservices/notifications
+    volumes:
+      - ./microservices/notifications:/app
+    env_file:
+      - env/common.app.env
+      - env/notifications.app.env
+    depends_on:
+      - rabbitmq
+
+  # RabbitMQ
+  rabbitmq:
+    image: rabbitmq:3-alpine
+    env_file:
+      - env/rabbitmq.env
+
+  # Redis
+  redis:
+    image: redis:6-alpine
+    ports:
+      - 6379
+    volumes:
+      - redisData:/data
+
+volumes:
+  logsAcl:
+  logsSecrets:
+  logsGrade:
+  dbSecrets:
+  dbGrade:
+  redisData:

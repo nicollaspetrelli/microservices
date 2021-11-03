@@ -1,0 +1,23 @@
+{
+    "name": "vcampitelli/microservice-acl-client",
+    "description": "ACL library for the Workshop Microservices",
+    "type": "library",
+    "license": "private",
+    "autoload": {
+        "psr-4": {
+            "Vcampitelli\\Framework\\Acl\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Vinícius Campitelli",
+            "email": "1877191+vcampitelli@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.0"
+    }
+}
